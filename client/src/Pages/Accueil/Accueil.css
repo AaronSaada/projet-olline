@@ -1,0 +1,94 @@
+/*                HEROBANNER                 */
+
+.accueil-herobanner-container{
+  background: linear-gradient(140deg, var(--Jaune-Clair) 0%, var(--Jaune-Orange) 50%, var(--Rose-Fonce) 80%, var(--Fuschia) 100%);
+  height: 100dvh;
+  width: 100%;
+  z-index: -5;
+}
+
+.accueil-herobanner-flex{
+  display: flex;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  overflow: hidden;  
+}
+
+.accueil-herobanner-flex > div{
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.accueil-herobanner-text{
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.accueil-herobanner-text h1{
+  font-size: 5rem;
+  font-weight: 700
+}
+
+.accueil-herobanner-text p {
+  font-size: 1.6rem;
+
+}
+
+.accueil-herobanner-text button{
+  width: 350px;
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: -1px 2px rgba(0, 0, 0, 0.149);
+}
+
+.accueil-herobanner-image img{
+  width: 700px;
+  position: absolute;
+  right: 10%;
+  background: transparent;
+}
+
+.accueil-herobanner-decouvrir{
+  position: relative;
+}
+
+.accueil-herobanner-decouvrir::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-140deg, var(--Jaune-Clair) 0%, var(--Jaune-Orange) 50%, var(--Rose-Fonce) 80%, var(--Fuschia) 100%);
+  z-index: -1;
+  border-radius: 30px;
+  margin: -1px;
+}
+
+
+/*    ------------------------------------    */
+
+
+/*                   VEDETTES                 */
+
+
+
+.accueil-vedette-wrapper{
+  padding: 100px 0;
+}
+
+.accueil-vedette-wrapper h2{
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+
+
+
+
+/*    -------------------------------------   */

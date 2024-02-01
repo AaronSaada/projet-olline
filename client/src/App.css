@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=DM+Sans&display=swap');
+
+*,
+*::before,
+*::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+  list-style: none;
+  background-color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  border: none;
+}
+
+:root{
+  --Abel-font : 'Abel', system-ui, sans-serif;
+  --Dm-Sans : 'DM Sans', system-ui, sans-serif;
+  --Jaune-Clair : #fefeb0;
+  --Jaune-Orange : #f6ad59;
+  --Rose-Fonce : #f2627c;
+  --Fuschia : #f245af;
+}
+
+.container{
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: var(--Abel-font);
+}
+
+p, a, input, select, button{
+  font-family: var(--Dm-Sans);
+}
