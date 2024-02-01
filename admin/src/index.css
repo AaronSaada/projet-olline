@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap');
+
+
+*,
+*::before,
+*::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+  list-style: none;
+  background-color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  border: none;
+}
+
+
+:root{
+  --Poppins: 'Poppins', system-ui, sans-serif;
+  --Roboto: 'Roboto', system-ui, sans-serif;
+}
