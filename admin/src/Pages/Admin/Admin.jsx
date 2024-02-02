@@ -7,7 +7,7 @@ import Sidebar from '../../Components/Sidebar/Sidebar'
 
 const Admin = () => {
   return (
-    <div>
+    <div className='admin-container'>
       <Sidebar/>
       <Routes>
         <Route path='/addproduct' element={<AddProduct/>} />
