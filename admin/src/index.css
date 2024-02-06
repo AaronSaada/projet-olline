@@ -19,6 +19,7 @@
   --Abel-font : 'Abel', system-ui, sans-serif;
   --Dm-Sans : 'DM Sans', system-ui, sans-serif;
   --Jaune-Clair : #fefeb0;
+  --Saumon : #ffbcae;
   --Jaune-Orange : #f6ad59;
   --Rose-Fonce : #f2627c;
   --Fuschia : #f245af;
@@ -33,6 +34,13 @@ h2, h3, h4, h5, h6{
   font-family: var(--Abel-font);
 }
 
-p, a, input, select, button{
+p, a, input, select, textarea, label, button{
   font-family: var(--Dm-Sans);
+}
+
+.admin-pannel-flex{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100dvh;
 }

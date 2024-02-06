@@ -3,7 +3,7 @@ import './ListProduct.css'
 
 function ListProduct() {
   return (
-    <div className='listproduct-container'>
+    <div className='listproduct-container admin-product-container'>
 
     </div>
   )

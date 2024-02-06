@@ -1,7 +1,7 @@
 /*                HEROBANNER                 */
 
 .accueil-herobanner-container{
-  background-color: rgb(255, 188, 174);
+  background-color: var(--Saumon);
   height: 100dvh;
   width: 100%;
   z-index: -5;
