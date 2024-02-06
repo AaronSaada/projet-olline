@@ -63,7 +63,7 @@ function AddProduct() {
         </div>
       </div>
       <div className="addproduct-item-field">
-      <label htmlFor='description'>Catégorie du produit</label>
+      <label htmlFor='description'>Description du produit</label>
         <textarea name='description' id='description' placeholder='Entrez la description du produit' value={productDetails.description} onChange={changeHandler}></textarea>
       </div>
       <div className="addproduct-item-field">

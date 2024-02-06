@@ -1,7 +1,7 @@
 const port = 4000;
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
+const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
@@ -11,13 +11,27 @@ app.use(express.json());
 app.use(cors());
 
 // Connexion à la base de données MongoDB
-mongoose.connect("mongodb+srv://ollineadmin:Olline03p266588!@cluster0.gp7tau6.mongodb.net/olline");
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "olline_database"
+})
 
 // Création de l'API
 
 app.get("/", (req, res) => {
-  res.send("L'application Express est en marche");
+  return res.json("L'application Express est en marche");
 })
+
+app.get('/users', (req,res) => {
+  const sql = "SELECT * FROM users";
+  db.query(sql, (err, data) => {
+    if(err) return res.json(err);
+    return res.json(data);
+  })
+})
+
 
 // Stock d'images
 const storage = multer.diskStorage({
@@ -43,7 +57,7 @@ app.post("/upload", upload.single('product'), (req, res) => {
 })
 
 // Création du schéma de produits
-const Product = mongoose.model("Product", {
+/* const Product = mongoose.model("Product", {
   id: {
     type: Number,
     required: true
@@ -81,6 +95,7 @@ const Product = mongoose.model("Product", {
     default: true
   }
 })
+*/
 
 // Ajout d'un produit selon le schéma
 app.post('/addproduct', async (req, res) => {
@@ -143,6 +158,6 @@ app.listen(port, (error)=>{
     console.log("Connecté sur le port " + port)
   // Si il y a une erreur, on affiche l'erreur dans la console
   } else{
-    console.log("Error : " + error)
+    console.log("Erreur : " + error)
   }
 })
