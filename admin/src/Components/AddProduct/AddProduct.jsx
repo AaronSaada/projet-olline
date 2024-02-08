@@ -25,7 +25,6 @@ function AddProduct() {
   }
 
   const addProduct = async () => {
-    console.log(productDetails);
     let responseData;
     let product = productDetails;
 
@@ -41,8 +40,18 @@ function AddProduct() {
     }).then((resp) => resp.json()).then((data) => { responseData = data });
 
     if(responseData.success){
-      product.image = responseData.image_url;
-      console.log(product)
+      product.image = responseData.imageURL;
+      console.log(product);
+      await fetch('http://localhost/4000/addproduct', {
+        method: "POST",
+        headers: {
+          Accept: 'application/json',
+          "Content-Type": 'application/json',
+        },
+        body: JSON.stringify(product),
+      }).then((resp) => resp.json()).then(() => {
+        data.success ? alert("Produit ajouté avec succès") : alert("Echec de l'opération");
+      })
     }
   }
 
