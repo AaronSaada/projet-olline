@@ -2,9 +2,6 @@ const port = 4000;
 const express = require("express");
 const app = express();
 const mysql = require("mysql");
-const jwt = require("jsonwebtoken");
-const multer = require("multer");
-const path = require("path");
 const cors = require("cors");
 
 app.use(express.json());
@@ -32,7 +29,7 @@ app.get('/users', (req,res) => {
 })
 
 // Récupérer tous les produits
-app.get('/products', async (req, res) => {
+app.get('/listproduct', (req, res) => {
   const q = "SELECT * FROM products";
   db.query(q, (err,data) => {
     if(err) return res.json(err)
@@ -42,54 +39,18 @@ app.get('/products', async (req, res) => {
 
 // Création de produit
 app.post("/addproduct", (req, res) => {
-  const q = "INSERT INTO products (`name`,`old_price`,`new_price`,`category`,`image`,`description` VALUES (?)"
+  const q = "INSERT INTO products (`name`,`old_price`,`new_price`,`category`,`image`,`description`) VALUES (?)"
   const values = [
-    "name from backend",
-    13.10,
-    1.10,
-    "Homme",
-    "Homme",
-    "name from backend"
+    req.body.name,
+    req.body.old_price,
+    req.body.new_price,
+    req.body.category,
+    req.body.image,
+    req.body.description
   ];
   db.query(q, [values], (err, data) => {
     if(err) return res.json(err)
-    return res.json("Le produit a été créé avec succès.")
-  })
-})
-
-// Suppression de produit
-app.post('/removeproduct', async (req, res) => {
-  await Product.findOneAndDelete({
-    id: req.body.id
-  });
-  console.log("Produit supprimé");
-  res.json({
-    success: true,
-    name: req.body.name
-  })
-})
-
-
-// Stock d'images
-const storage = multer.diskStorage({
-  destination: './upload/images',
-  // Permet de donner un nom unique à un fichier
-  filename: (req, file, cb) => {
-    return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
-  }
-})
-
-const upload = multer({
-  storage: storage
-});
-
-app.use('/images', express.static('upload/images'));
-
-// Creation de l'url de chaque image
-app.post("/upload", upload.single('product'), (req, res) => {
-  res.json({
-    success : 1,
-    imageURL : `http://localhost:${port}/images/${req.file.filename}`
+    return res.json("Le produit a bien été ajouté")
   })
 })
 
