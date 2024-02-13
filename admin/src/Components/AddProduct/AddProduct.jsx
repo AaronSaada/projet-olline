@@ -62,10 +62,10 @@ function AddProduct() {
         <label htmlFor='category'>Catégorie du produit</label>
         <select name='category' id='category' className='add-product-selector' value={productDetails.category} onChange={handleChange}>
           <option value="">-- Choissez une catégorie</option>
-          <option value="men">Homme</option>
-          <option value="women">Femme</option>
-          <option value="kid">Enfant</option>
-          <option value="baby">Nourisson</option>
+          <option value="Homme">Homme</option>
+          <option value="Femme">Femme</option>
+          <option value="Enfant">Enfant</option>
+          <option value="Nourisson">Nourisson</option>
         </select>
       </div>
       <div className='addproduct-image-flex'>

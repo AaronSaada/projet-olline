@@ -1,8 +1,20 @@
 const port = 4000;
 const express = require("express");
 const app = express();
+const path = require("path");
+
+
 const mysql = require("mysql");
 const cors = require("cors");
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: './upload',
+  filename: (req, file, cb) => {
+    return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+  }
+})
+
+const upload = multer({storage: storage})
 
 app.use(express.json());
 app.use(cors());
@@ -37,6 +49,14 @@ app.get('/listproduct', (req, res) => {
   })
 })
 
+app.use('/images', express.static('upload/images'))
+app.post("/upload", upload.single("product"), (req, res) => {
+  res.json({
+    success: 1,
+    image_url: `http://localhost:${port}/images/${req.file.filename}`
+  })
+})
+
 // Création de produit
 app.post("/addproduct", (req, res) => {
   const q = "INSERT INTO products (`name`,`old_price`,`new_price`,`category`,`image`,`description`) VALUES (?)"
@@ -53,6 +73,8 @@ app.post("/addproduct", (req, res) => {
     return res.json("Le produit a bien été ajouté")
   })
 })
+
+
 
 app.listen(port, (error)=>{
   // Si il n'y a aucune erreur, on affiche dans la console "Connecté sur le port 4000
