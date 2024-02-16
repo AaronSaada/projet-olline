@@ -1,0 +1,71 @@
+.authentification-container{
+  background-color: rgb(235, 235, 235);
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 25dvh;
+  padding-bottom: 10dvh;
+}
+
+.authentification-wrapper{
+  background-color: white;
+  min-width: 500px;
+  min-height: 600px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgb(217, 217, 217);
+}
+
+.authentification-wrapper h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.authentification-wrapper form{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.form-input-flex{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-input-flex label{
+  font-size: 2rem;
+}
+
+.form-input-flex input{
+  background-color: rgb(235, 235, 235);
+  padding: 15px 15px;
+  border-radius: 10px;
+  min-width: 250px;
+  font-size: 1.3rem;
+  color: white;
+}
+
+.authentification-connexion-bouton{
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.authentification-lien{
+  text-align: center;
+}
+
+.authentification-lien a{
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: underline;
+}
