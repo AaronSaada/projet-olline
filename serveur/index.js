@@ -1,87 +1,83 @@
-const port = 4000;
-const express = require("express");
+const express = require("express")
+const mysql = require("mysql")
+const cors = require("cors")
+const bcrypt = require("bcrypt")
+const saltRounds = 10;
+
 const app = express();
-const path = require("path");
-
-
-const mysql = require("mysql");
-const cors = require("cors");
-const multer = require("multer");
-const storage = multer.diskStorage({
-  destination: './upload',
-  filename: (req, file, cb) => {
-    return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
-  }
-})
-
-const upload = multer({storage: storage})
 
 app.use(express.json());
-app.use(cors());
+app.use(cors())
 
-// Connexion à la base de données MongoDB
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "olline_database"
+    user: "root",
+    host: "localhost",
+    password: "root",
+    database: "projet_olline"
+});
+
+app.post('/inscription', (req, res) => {
+
+    const lastname = req.body.lastname
+    const firstname = req.body.firstname
+    const email = req.body.email
+    const password = req.body.password
+    const dateOfBirth = req.body.dateOfBirth
+    const address = req.body.address
+
+    bcrypt.hash(password, saltRounds, (err, hash) => {
+
+        if(err) {
+            console.log(err)
+        }
+
+        db.query(
+            "INSERT INTO users (lastname, firstname, email, password, dateOfBirth, address) VALUES (?, ?, ?, ?, ?, ?)",
+            [lastname, firstname, email, hash, dateOfBirth, address],
+            (err, result) => {
+                console.log(err)
+            }
+        )
+    })
+
 })
 
-app.get("/", (req, res) => {
-  res.json("Connecté au backend");
+app.post('/connexion', (req, res) => {
+
+    const email = req.body.email
+    const password = req.body.password
+
+    db.query(
+        "SELECT * FROM users WHERE username = ?;",
+        email,
+        (err, result) => {
+            if(err) {
+                res.send({err: err})
+            }
+            else{
+                if (result.length > 0) {
+                    bcrypt.compare(password, result[0].password, (error, response) => {
+                        if(response) {
+                            res.send(result)
+                        }
+                        else{
+                            res.send({
+                                message: "Mauvaise combinaison Email / Mot de passe"
+                            })
+                        }
+                    })
+                }
+                else{
+                    res.send({
+                        message: "L'utilisateur indiqué n'existe pas"
+                    })
+                }
+            }
+            console.log(err)
+        }
+    )
 })
 
-// Récupération de tous les utilisateurs
-app.get('/users', (req,res) => {
-  const sql = "SELECT * FROM users";
-  db.query(sql, (err, data) => {
-    if(err) return res.json(err);
-    return res.json(data);
-  })
-})
-
-// Récupérer tous les produits
-app.get('/listproduct', (req, res) => {
-  const q = "SELECT * FROM products";
-  db.query(q, (err,data) => {
-    if(err) return res.json(err)
-    return res.json(data)
-  })
-})
-
-app.use('/images', express.static('upload/images'))
-app.post("/upload", upload.single("product"), (req, res) => {
-  res.json({
-    success: 1,
-    image_url: `http://localhost:${port}/images/${req.file.filename}`
-  })
-})
-
-// Création de produit
-app.post("/addproduct", (req, res) => {
-  const q = "INSERT INTO products (`name`,`old_price`,`new_price`,`category`,`image`,`description`) VALUES (?)"
-  const values = [
-    req.body.name,
-    req.body.old_price,
-    req.body.new_price,
-    req.body.category,
-    req.body.image,
-    req.body.description
-  ];
-  db.query(q, [values], (err, data) => {
-    if(err) return res.json(err)
-    return res.json("Le produit a bien été ajouté")
-  })
-})
-
-
-
-app.listen(port, (error)=>{
-  // Si il n'y a aucune erreur, on affiche dans la console "Connecté sur le port 4000
-  if(!error){
-    console.log("Connecté sur le port " + port)
-  // Si il y a une erreur, on affiche l'erreur dans la console
-  } else{
-    console.log("Erreur : " + error)
-  }
-})
+app.listen(4000, () => {
+    console.log("Connecté au serveur")
+});

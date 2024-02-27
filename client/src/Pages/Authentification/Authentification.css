@@ -19,11 +19,13 @@
   flex-direction: column;
   border-radius: 10px;
   box-shadow: 0 0 15px rgb(217, 217, 217);
+  padding: 2rem 5rem;
 }
 
 .authentification-wrapper h1 {
   font-size: 3rem;
   font-weight: 700;
+  margin-bottom: 2rem;
 }
 
 .authentification-wrapper form{
@@ -39,6 +41,7 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  width: 100%;
 }
 
 .form-input-flex label{
@@ -49,23 +52,30 @@
   background-color: rgb(235, 235, 235);
   padding: 15px 15px;
   border-radius: 10px;
-  min-width: 250px;
   font-size: 1.3rem;
-  color: white;
+  color: black;
+  width: 100%;
 }
 
 .authentification-connexion-bouton{
   width: 100%;
   font-size: 1.5rem;
   font-weight: 700;
+  margin-bottom: 2rem;
 }
 
 .authentification-lien{
   text-align: center;
+  
 }
 
 .authentification-lien a{
   font-size: 1.2rem;
   font-weight: 700;
   text-decoration: underline;
+}
+
+.form-name-flex{
+  display: flex;
+  gap: 2rem;
 }
