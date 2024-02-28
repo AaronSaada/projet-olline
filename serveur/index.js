@@ -44,7 +44,7 @@ app.post('/inscription', (req, res) => {
     const lastname = req.body.lastname
     const firstname = req.body.firstname
     const email = req.body.email
-    const password = req.body.password
+    const password = req.body.hash
     const dateOfBirth = req.body.dateOfBirth
     const address = req.body.address
 
