@@ -34,8 +34,8 @@ function Inscription() {
           <div className='form-name-flex'>
             <div className='form-input-flex'>
               <label>Nom</label>
-              <input 
-                type='text' 
+              <input
+                type='text'
                 placeholder='Entrez votre nom'
                 onChange={(e) => {
                   setLastname(e.target.value)

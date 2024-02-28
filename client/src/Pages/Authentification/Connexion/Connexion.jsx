@@ -12,19 +12,19 @@ function Connexion() {
 
   const [loginStatus, setLoginStatus] = useState("")
 
-  const connexion = () => {
-    axios.post('http://localhost/4000/connexion', {
+  const connexion = (e) => {
+    e.preventDefault()
+    axios.post('http://localhost:4000/connexion', {
       email: email,
       password: password
     }).then((response) => {
-
       if(response.data.message) {
         setLoginStatus(response.data.message)
       }
       else {
-        setLoginStatus(response.data[0].name)
+        setLoginStatus(response.data[0])
+        console.log(response.data[0])
       }
-      
     })
   }
 
@@ -56,7 +56,9 @@ function Connexion() {
           <StyledButton 
             className='authentification-connexion-bouton'
             onClick={connexion}
-          >Se connecter</StyledButton>
+          >
+            Se connecter
+          </StyledButton>
         </form>
         <p className='authentification-lien'>Pas encore membre ? <br/><Link to='/inscription'>S'inscrire</Link></p>
       </div>

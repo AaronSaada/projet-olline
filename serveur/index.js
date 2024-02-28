@@ -3,11 +3,34 @@ const mysql = require("mysql")
 const cors = require("cors")
 const bcrypt = require("bcrypt")
 const saltRounds = 10;
+const cookieParser = require("cookie-parser")
+const session = require('express-session');
+const bodyParser = require("body-parser");
 
 const app = express();
 
 app.use(express.json());
-app.use(cors())
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true
+}));
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+app.use(
+    session({
+        key: "userId",
+        secret: "M,:'tQChUm4zJA6NrD78H$-(Y'3GsA",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 60 * 60 * 24
+        }
+    })
+)
+
 
 const db = mysql.createConnection({
     user: "root",
@@ -35,7 +58,7 @@ app.post('/inscription', (req, res) => {
             "INSERT INTO users (lastname, firstname, email, password, dateOfBirth, address) VALUES (?, ?, ?, ?, ?, ?)",
             [lastname, firstname, email, hash, dateOfBirth, address],
             (err, result) => {
-                console.log(err)
+                console.log(result)
             }
         )
     })
@@ -48,7 +71,7 @@ app.post('/connexion', (req, res) => {
     const password = req.body.password
 
     db.query(
-        "SELECT * FROM users WHERE username = ?;",
+        "SELECT * FROM users WHERE email = ?;",
         email,
         (err, result) => {
             if(err) {
@@ -58,6 +81,8 @@ app.post('/connexion', (req, res) => {
                 if (result.length > 0) {
                     bcrypt.compare(password, result[0].password, (error, response) => {
                         if(response) {
+                            res.session.user = result
+                            console.log(result)
                             res.send(result)
                         }
                         else{
