@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../Authentification.css'
 import { Link } from 'react-router-dom'
 import axios from "axios"
@@ -10,7 +10,9 @@ function Connexion() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const [loginStatus, setLoginStatus] = useState("")
+  const [loginStatus, setLoginStatus] = useState("");
+
+  axios.defaults.withCredentials = true;
 
   const connexion = (e) => {
     e.preventDefault()
@@ -19,14 +21,22 @@ function Connexion() {
       password: password
     }).then((response) => {
       if(response.data.message) {
-        setLoginStatus(response.data.message)
+        setLoginStatus(response.data.loggedIn)
       }
       else {
-        setLoginStatus(response.data[0])
-        console.log(response.data[0])
+        setLoginStatus(response.data[0].message)
+        console.log(loginStatus)
       }
     })
   }
+
+  useEffect(() => {
+    axios.get("http://localhost:4000/connexion").then((response) => {
+      if(response.data.loggedIn === true) {
+        setLoginStatus(response.data.user[0].email)
+      }
+    })
+  }, []);
 
   return (
     <div className='authentification-container'>

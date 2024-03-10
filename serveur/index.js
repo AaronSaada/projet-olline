@@ -1,11 +1,16 @@
 const express = require("express")
-const mysql = require("mysql")
+const mysql = require("mysql2")
 const cors = require("cors")
 const bcrypt = require("bcrypt")
 const saltRounds = 10;
 const cookieParser = require("cookie-parser")
 const session = require('express-session');
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+
+dotenv.config({
+    path: '../.env'
+})
 
 const app = express();
 
@@ -21,8 +26,8 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(
     session({
-        key: "userId",
-        secret: "M,:'tQChUm4zJA6NrD78H$-(Y'3GsA",
+        key: process.env.KEY,
+        secret: process.env.SECRET,
         resave: false,
         saveUninitialized: false,
         cookie: {
@@ -33,10 +38,10 @@ app.use(
 
 
 const db = mysql.createConnection({
-    user: "root",
-    host: "localhost",
-    password: "root",
-    database: "projet_olline"
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 });
 
 app.post('/inscription', (req, res) => {
@@ -71,7 +76,7 @@ app.post('/connexion', (req, res) => {
     const password = req.body.password
 
     db.query(
-        "SELECT * FROM users WHERE email = ?;",
+        "SELECT * FROM users WHERE email = ?",
         email,
         (err, result) => {
             if(err) {
@@ -81,8 +86,8 @@ app.post('/connexion', (req, res) => {
                 if (result.length > 0) {
                     bcrypt.compare(password, result[0].password, (error, response) => {
                         if(response) {
-                            res.session.user = result
-                            console.log(result)
+                            req.session.user = result
+                            console.log(req.session.user)
                             res.send(result)
                         }
                         else{
@@ -101,6 +106,19 @@ app.post('/connexion', (req, res) => {
             console.log(err)
         }
     )
+})
+
+app.get("/connexion", (req, res) => {
+    if(req.session.user) {
+        res.send({
+            loggedIn: true, 
+            user: req.session.user
+        })
+    }else{
+        res.send({
+            loggedIn: false
+        })
+    }
 })
 
 app.listen(4000, () => {
