@@ -6,6 +6,7 @@ const saltRounds = 10;
 const cookieParser = require("cookie-parser")
 const session = require('express-session');
 const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken")
 const dotenv = require("dotenv");
 
 dotenv.config({
@@ -15,15 +16,19 @@ dotenv.config({
 const app = express();
 
 app.use(express.json());
+
 app.use(cors({
     origin: ["http://localhost:3000"],
     methods: ["GET", "POST"],
     credentials: true
 }));
-app.use(cookieParser())
+
+app.use(cookieParser());
+
 app.use(bodyParser.urlencoded({
     extended: true
-}))
+}));
+
 app.use(
     session({
         key: process.env.KEY,
@@ -31,11 +36,30 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60 * 60 * 24
+            expires: 60 * 60 * 4
         }
     })
-)
+);
 
+const verifyJWT = (req, res, next) => {
+    const token = req.headers["x-access-token"];
+    if(!token) {
+        res.send("Aucun token détecté")
+    } else{
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if(err){
+                res.json({
+                    auth: false,
+                    message: "Problème lors de l'authentification"
+                })
+            } else{
+                req.idusers = decoded.id
+                console.log(req.idusers)
+                next();
+            }
+        })
+    }
+}
 
 const db = mysql.createConnection({
     host: process.env.HOST,
@@ -86,20 +110,30 @@ app.post('/connexion', (req, res) => {
                 if (result.length > 0) {
                     bcrypt.compare(password, result[0].password, (error, response) => {
                         if(response) {
+                            const id = result[0].idusers
+                            const token = jwt.sign({id}, process.env.JWT_SECRET, {
+                                expiresIn: 600,
+                            })
                             req.session.user = result
-                            console.log(req.session.user)
-                            res.send(result)
+
+                            res.json({
+                                auth: true,
+                                token: token,
+                                result: result
+                            })
                         }
                         else{
-                            res.send({
+                            res.json({
+                                auth: false,
                                 message: "Mauvaise combinaison Email / Mot de passe"
                             })
                         }
                     })
                 }
                 else{
-                    res.send({
-                        message: "L'utilisateur indiqué n'existe pas"
+                    res.json({
+                        auth: false,
+                        message: "Cet utilisateur n'existe pas"
                     })
                 }
             }
@@ -119,7 +153,7 @@ app.get("/connexion", (req, res) => {
             loggedIn: false
         })
     }
-})
+});
 
 app.listen(4000, () => {
     console.log("Connecté au serveur")

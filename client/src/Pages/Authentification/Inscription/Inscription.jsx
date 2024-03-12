@@ -66,7 +66,7 @@ function Inscription() {
           <div className='form-input-flex'>
             <label>Mot de passe</label>
             <input 
-              type='text' 
+              type='password' 
               placeholder='Entrez votre mot de passe'
               onChange={(e) => {
                 setPassword(e.target.value)

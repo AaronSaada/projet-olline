@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../Authentification.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 import StyledButton from '../../../Components/assets/StyledComponents/StyledButton.jsx'
 
@@ -10,7 +10,9 @@ function Connexion() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const [loginStatus, setLoginStatus] = useState("");
+  const [loginStatus, setLoginStatus] = useState(false);
+
+  const navigate = useNavigate()
 
   axios.defaults.withCredentials = true;
 
@@ -20,20 +22,21 @@ function Connexion() {
       email: email,
       password: password
     }).then((response) => {
-      if(response.data.message) {
-        setLoginStatus(response.data.loggedIn)
+      if(!response.data.auth) {
+        setLoginStatus(false)
       }
       else {
-        setLoginStatus(response.data[0].message)
-        console.log(loginStatus)
+        setLoginStatus(true)
+        localStorage.setItem("token", response.data.token) 
+        navigate("/")
       }
     })
   }
 
   useEffect(() => {
     axios.get("http://localhost:4000/connexion").then((response) => {
-      if(response.data.loggedIn === true) {
-        setLoginStatus(response.data.user[0].email)
+      if(response.data.loggedIn === true){
+        setLoginStatus(true)
       }
     })
   }, []);
@@ -46,7 +49,7 @@ function Connexion() {
           <div className='form-input-flex'>
             <label>Email</label>
             <input 
-              type='text' 
+              type='email' 
               placeholder='Entrez votre Email'
               onChange={(e) => {
                 setEmail(e.target.value)
@@ -56,7 +59,7 @@ function Connexion() {
           <div className='form-input-flex'>
             <label>Mot de passe</label>
             <input 
-              type='text' 
+              type='password' 
               placeholder='Entrez votre mot de passe'
               onChange={(e) => {
                 setPassword(e.target.value)
