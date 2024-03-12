@@ -54,6 +54,7 @@ function Connexion() {
               onChange={(e) => {
                 setEmail(e.target.value)
               }}
+              required
             />
           </div>
           <div className='form-input-flex'>
@@ -64,6 +65,7 @@ function Connexion() {
               onChange={(e) => {
                 setPassword(e.target.value)
               }}
+              required
             />
           </div>
           <StyledButton 

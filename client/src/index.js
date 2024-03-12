@@ -13,4 +13,5 @@ root.render(
     <Navbar />
     <App />
   </BrowserRouter>
+  
 );

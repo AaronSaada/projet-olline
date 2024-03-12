@@ -40,6 +40,7 @@ function Inscription() {
                 onChange={(e) => {
                   setLastname(e.target.value)
                 }}
+                required
               />
             </div>
             <div className='form-input-flex'>
@@ -50,6 +51,7 @@ function Inscription() {
                 onChange={(e) => {
                   setFirstname(e.target.value)
                 }}
+                required
               />
             </div>
           </div>
@@ -61,6 +63,7 @@ function Inscription() {
               onChange={(e) => {
                 setEmail(e.target.value)
               }}
+              required
             />
           </div>
           <div className='form-input-flex'>
@@ -71,6 +74,7 @@ function Inscription() {
               onChange={(e) => {
                 setPassword(e.target.value)
               }}
+              required
             />
           </div>
           <div className='form-input-flex'>
@@ -80,6 +84,7 @@ function Inscription() {
               onChange={(e) => {
                 setDateOfBirth(e.target.value)
               }}  
+              required
             />
           </div>
           <div className='form-input-flex'>
@@ -90,6 +95,7 @@ function Inscription() {
               onChange={(e) => {
                 setAddress(e.target.value)
               }}
+              required
             />
           </div>
           <StyledButton className='authentification-connexion-bouton' onClick={inscription}>S'inscrire</StyledButton>

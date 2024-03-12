@@ -136,8 +136,10 @@ app.post('/connexion', (req, res) => {
                         message: "Cet utilisateur n'existe pas"
                     })
                 }
-            }
-            console.log(err)
+            }{err &&(
+                console.log(err)
+            )}
+           
         }
     )
 })
