@@ -157,6 +157,13 @@ app.get("/connexion", (req, res) => {
     }
 });
 
+app.post("/deconnexion",(req, res) => {
+    res.clearCookie("accessToken", {
+        secure: true,
+        sameSite: "none"
+    }).status(200).json("L'utilisateur a bien été déconnecté.")
+});
+
 app.listen(4000, () => {
     console.log("Connecté au serveur")
 });
