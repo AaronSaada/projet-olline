@@ -8,6 +8,14 @@ const session = require('express-session');
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken")
 const dotenv = require("dotenv");
+import authRoutes from "./routes/auth"
+import userRoutes from "./routes/users"
+import productRoutes from "./routes/products"
+
+
+app.use("/users", userRoutes)
+app.use("/auth", authRoutes)
+app.use("/products", productRoutes)
 
 dotenv.config({
     path: '../.env'
