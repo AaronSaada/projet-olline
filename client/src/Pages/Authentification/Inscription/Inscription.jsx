@@ -6,24 +6,29 @@ import StyledButton from '../../../Components/assets/StyledComponents/StyledButt
 
 function Inscription() {
 
-  const [lastname, setLastname] = useState("")
-  const [firstname, setFirstname] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [dateOfBirth, setDateOfBirth] = useState("")
-  const [address, setAddress] = useState("")
+  const [inputs, setInputs] = useState({
+    lastname: "",
+    firstname: "",
+    email: "",
+    password: "",
+    dateOfBirth: "",
+    address: "",
+  })
 
-  const inscription = () => {
-    axios.post('http://localhost:4000/inscription', {
-      lastname: lastname,
-      firstname: firstname,
-      email: email,
-      password: password,
-      dateOfBirth: dateOfBirth,
-      address: address
-    }).then((response) => {
-      console.log(response)
-    })
+  const [err, setErr] = useState(false)
+
+  const handleChange = e => {
+    setInputs(prev => ({...prev, [e.target.name]: e.target.value}) )
+  }
+
+  const handleClick = async e => {
+    e.preventDefault()
+
+    try{
+      await axios.post("http://localhost:4000/auth/inscription", inputs)
+    } catch(err){
+      setErr(err.reponse.data)
+    }
   }
 
   return (
@@ -37,9 +42,8 @@ function Inscription() {
               <input
                 type='text'
                 placeholder='Entrez votre nom'
-                onChange={(e) => {
-                  setLastname(e.target.value)
-                }}
+                name='lastname'
+                onChange={handleChange}
                 required
               />
             </div>
@@ -48,9 +52,8 @@ function Inscription() {
               <input 
                 type='text' 
                 placeholder='Entrez votre prénom'
-                onChange={(e) => {
-                  setFirstname(e.target.value)
-                }}
+                name='firstname'
+                onChange={handleChange}
                 required
               />
             </div>
@@ -60,9 +63,8 @@ function Inscription() {
             <input 
               type='email' 
               placeholder='Entrez votre email'
-              onChange={(e) => {
-                setEmail(e.target.value)
-              }}
+              onChange={handleChange}
+              name='email'
               required
             />
           </div>
@@ -71,9 +73,8 @@ function Inscription() {
             <input 
               type='password' 
               placeholder='Entrez votre mot de passe'
-              onChange={(e) => {
-                setPassword(e.target.value)
-              }}
+              onChange={handleChange}
+              name='password'
               required
             />
           </div>
@@ -81,9 +82,8 @@ function Inscription() {
             <label>Date de naissance</label>
             <input 
               type='date'
-              onChange={(e) => {
-                setDateOfBirth(e.target.value)
-              }}  
+              name='dateOfBirth'
+              onChange={handleChange}
               required
             />
           </div>
@@ -92,13 +92,18 @@ function Inscription() {
             <input 
               type='text' 
               placeholder='Entrez votre adresse'
-              onChange={(e) => {
-                setAddress(e.target.value)
-              }}
+              name='address'
+              onChange={handleChange}
               required
             />
           </div>
-          <StyledButton className='authentification-connexion-bouton' onClick={inscription}>S'inscrire</StyledButton>
+          {err && <p className='message-erreur-authentification'>{err}</p>}
+          <StyledButton 
+            className='authentification-connexion-bouton'
+            onClick={handleClick}
+          >
+            S'inscrire
+          </StyledButton>
         </form>
         <p className='authentification-lien'>Déjà membre ? <br/><Link to='/connexion'>Se connecter</Link></p>
       </div>

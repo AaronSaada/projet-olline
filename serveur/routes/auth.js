@@ -1,8 +1,10 @@
 import express from "express";
-import { getAuth } from "../controllers/auth";
+import { connexion, deconnexion, inscription } from "../controllers/auth.js";
 
 const router = express.Router()
 
-router.get("/uauth", getAuth)
+router.post("/connexion", connexion)
+router.post("/inscription", inscription)
+router.post("/deconnexion", deconnexion)
 
 export default router
