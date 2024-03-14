@@ -49,12 +49,21 @@ export const connexion = (req, res) => {
 
     if(!checkPassword) return res.status(400).json("Mauvaise combinaison Email / Mot de passe")
 
-    const token = jwt.sign({id:data[0].id}, process.env.JWT_SECRET)
+    const token = jwt.sign(
+      {
+        id:data[0].id
+      }, 
+      process.env.JWT_SECRET, 
+      {
+        expiresIn: 60 * 60 * 24
+      }
+    )
 
     const {password, ...others} = data[0]
 
     res.cookie("accessToken", token, {
-      httpOnly: true,
+      httpOnly: false,
+      expire: 60 * 60 * 24
     }).status(200).json(others)
   })
 
@@ -63,6 +72,6 @@ export const connexion = (req, res) => {
 export const deconnexion = (req, res) => {
  res.clearCookie("accessToken", {
   secure: true,
-  sameSite: "none"
+  sameSite: none
  }).status(200).json("Déconnexion réussie.")
 }

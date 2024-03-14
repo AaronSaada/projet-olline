@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import '../Authentification.css'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../../Context/AuthContext.js'
 import axios from "axios"
 import StyledButton from '../../../Components/assets/StyledComponents/StyledButton.jsx'
 
@@ -9,7 +10,7 @@ function Connexion() {
 
   const [inputs, setInputs] = useState({
     email: "",
-    password: "",
+    password: ""
   })
 
   const navigate = useNavigate()
@@ -17,6 +18,7 @@ function Connexion() {
   axios.defaults.withCredentials = true;
 
   const [err, setErr] = useState(false);
+
 
   const handleChange = (e) => {
     setInputs((prev) => ({
@@ -26,10 +28,12 @@ function Connexion() {
   }
 
   const handleLogin = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try{
+      await axios.post("http://localhost:4000/auth/connexion", inputs)
+      navigate("/")
     }catch(err){
-      setErr(err)
+      setErr(err.response.data)
     }
   }
 
