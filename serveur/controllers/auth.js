@@ -70,8 +70,10 @@ export const connexion = (req, res) => {
 }
 
 export const deconnexion = (req, res) => {
- res.clearCookie("accessToken", {
-  secure: true,
-  sameSite: none
- }).status(200).json("Déconnexion réussie.")
+
+  res.clearCookie("accessToken", {
+    secure: true,
+    sameSite: "none"
+  }).status(200).json("Déconnexion réussie.")
+  
 }

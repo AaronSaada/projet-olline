@@ -1,9 +1,28 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import StyledButton from '../assets/StyledComponents/StyledButton'
+import { AuthContext } from '../../Context/AuthContext'
+import axios from "axios"
 import './Navbar.css'
 
 export const Navbar = () => {
+
+  const {currentUser} = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  const handleClick = async e => {
+    e.preventDefault()
+
+    try{
+      await axios.post("http://localhost:4000/auth/deconnexion")
+      localStorage.removeItem("user")
+      navigate("/connexion")
+      window.location.reload()
+    } catch(err){
+      console.log(err)
+    }
+  }
+
   return (
     <div className='navbar container'>
       <ul>
@@ -19,8 +38,16 @@ export const Navbar = () => {
           </div>
         </div>
         <div className='connexion-panier-container'>
-          <Link to='/connexion'><StyledButton>Connexion</StyledButton></Link>
-          <li><Link to='/panier'>Panier</Link></li>
+          
+          {currentUser && currentUser.role === "admin"
+            ? <Link to='/admin'>Admin</Link>
+            : <li><Link to='/panier'>Panier</Link></li>
+          }
+          {currentUser === null
+            ? <Link to='/connexion'><StyledButton>Connexion</StyledButton></Link>
+            : <StyledButton onClick={handleClick}>Déconnexion</StyledButton>
+          }
+          
         </div>
       </ul>
     </div>

@@ -5,13 +5,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { ContextProvider } from './Context/AuthContext';
 import App from './App';
 
-
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ContextProvider>
     <BrowserRouter>
-      <Navbar />
+      {window.location.href === "http://localhost:3000/admin" ? "" : <Navbar />}
       <App />
     </BrowserRouter>
   </ContextProvider>

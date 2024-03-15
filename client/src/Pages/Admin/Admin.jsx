@@ -1,12 +1,20 @@
 import React from 'react'
-import AdminUsers from './AdminUsers/AdminUsers'
-import AdminProduct from './AdminProduct/AdminProduct'
+import AddUsers from './AdminUsers/AddUsers'
+import UpdateUsers from './AdminUsers/UpdateUsers'
+import AddProduct from './AdminProduct/AddProduct'
+import UpdateProduct from './AdminProduct/UpdateProduct'
+import './Admin.css'
 
 function Admin() {
   return (
-    <div>
-        <AdminUsers />
-        <AdminProduct />
+    <div className='admin-pannel-container'>
+      <h1>Pannel Admin</h1>
+      <div className='admin-pannel-wrapper'>
+        <AddUsers />
+        <UpdateUsers />
+        <AddProduct />
+        <UpdateProduct/>
+      </div>
     </div>
   )
 }
