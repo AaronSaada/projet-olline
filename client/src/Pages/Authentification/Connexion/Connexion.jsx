@@ -27,10 +27,12 @@ function Connexion() {
     }))
   }
 
+  const {login} = useContext(AuthContext)
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try{
-      await axios.post("http://localhost:4000/auth/connexion", inputs)
+      await login(inputs)
       navigate("/")
     }catch(err){
       setErr(err.response.data)
@@ -66,7 +68,7 @@ function Connexion() {
               required
             />
           </div>
-          {err && err}
+          {err && <p className='message-erreur-authentification'>{err}</p>}
           <StyledButton 
             className='authentification-connexion-bouton'
             onClick={handleLogin}

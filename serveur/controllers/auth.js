@@ -43,7 +43,7 @@ export const connexion = (req, res) => {
 
   db.query(q, [req.body.email], (err, data) => {
     if(err) return res.status(500).json(err)
-    if(data.length === 0) return res.status(404).json("Aucun utilisateur trouvé.")
+    if(data.length === 0) return res.status(404).json("Veuillez remplir les champs")
 
     const checkPassword = bcrypt.compareSync(req.body.password, data[0].password)
 

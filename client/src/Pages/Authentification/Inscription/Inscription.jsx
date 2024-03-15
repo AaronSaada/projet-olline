@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import '../Authentification.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import StyledButton from '../../../Components/assets/StyledComponents/StyledButton.jsx'
 
 function Inscription() {
@@ -17,6 +17,8 @@ function Inscription() {
 
   const [err, setErr] = useState(false)
 
+  const navigate = useNavigate()
+
   const handleChange = e => {
     setInputs(prev => ({...prev, [e.target.name]: e.target.value}) )
   }
@@ -26,6 +28,7 @@ function Inscription() {
 
     try{
       await axios.post("http://localhost:4000/auth/inscription", inputs)
+      navigate("/connexion")
     } catch(err){
       setErr(err.reponse.data)
     }
