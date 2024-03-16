@@ -156,3 +156,7 @@ td{
   padding: 2rem;
   border-radius: 20px;
 }
+
+.list-product-container img{
+  width: 100px;
+}

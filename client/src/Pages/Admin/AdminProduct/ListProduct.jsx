@@ -45,7 +45,7 @@ function ListProduct() {
                 <td>{product.old_price}</td>
                 <td>{product.new_price}</td>
                 <td>{product.category}</td>
-                <td>{product.image}</td>
+                <td><img src={product.image}/></td>
                 <td>{product.description}</td>
                 <div className='table-flex'>
                   <button><Link to={`/admin/updateproduct/${product.id_products}`}>Modifier</Link></button>

@@ -9,7 +9,6 @@ function AddProduct() {
     old_price:0,
     new_price:0,
     category:"men",
-    image:"",
     description:""
   })
 
@@ -97,13 +96,7 @@ function AddProduct() {
           <option value="baby">Nourisson</option>
         </select>
       </div>
-      <div className='addproduct-image-flex'>
-        <div className="addproduct-item-field">
-          <label htmlFor='file-input'>
-            <img src="" alt='Téléversez une image' className='upload-button'/>
-          </label>
-          <input type="file" name='image' id='file-input' hidden/>
-        </div>
+      <div className="adduser-button-container">
         <button className='addproduct-button' onClick={() => {handleClick()}}>Ajouter le produit</button>
       </div>
     </div>

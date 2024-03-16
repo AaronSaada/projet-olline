@@ -15,13 +15,12 @@ export const addProduct = (req, res) => {
 
   db.query(q, [req.body.name], (err, data) => {
     if(err) return res.status(500).json(err)
-    const q = "INSERT INTO products (`name`, `old_price`, `new_price`, `category`, `image`, `description`) VALUE (?)"
+    const q = "INSERT INTO products (`name`, `old_price`, `new_price`, `category`, `description`) VALUE (?)"
     const values = [
       req.body.name,
       req.body.old_price,
       req.body.new_price,
       req.body.category,
-      req.body.image,
       req.body.description
     ]
 

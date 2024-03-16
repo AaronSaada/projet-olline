@@ -80,8 +80,28 @@
 .produits-vedette-wrapper{
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 300px;
 }
 
+.product-image{
+  width: 100%;
+}
+
+.product-name{
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.product-old_price{
+  text-decoration: line-through;
+  color: red;
+}
+
+.product-new_price{
+  font-size: 1.6rem;
+}
 
 
 /*    -------------------------------------   */
