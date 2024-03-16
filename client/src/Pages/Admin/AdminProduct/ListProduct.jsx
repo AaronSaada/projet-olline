@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 function ListProduct() {
@@ -10,6 +11,17 @@ function ListProduct() {
       .then(res => setProducts(res.data))
       .catch(err => console.log(err))
   }, [])
+
+  const handleDelete = async (id_products) => {
+
+    try{
+      await axios.delete("http://localhost:4000/product/deleteproduct/" + id_products)
+      window.location.reload()
+    }catch(err) {
+      console.log(err)
+    }
+
+  }
 
   return (
     <div className='list-products-container admin-product-container'>
@@ -36,8 +48,8 @@ function ListProduct() {
                 <td>{product.image}</td>
                 <td>{product.description}</td>
                 <div className='table-flex'>
-                  <button>Modifier</button>
-                  <button className='bouton-supprimer'>Supprimer</button>
+                  <button><Link to={`/admin/updateproduct/${product.id_products}`}>Modifier</Link></button>
+                  <button className='bouton-supprimer' onClick={() => handleDelete(product.id_products)}>Supprimer</button>
                 </div>
                 
               </tr>

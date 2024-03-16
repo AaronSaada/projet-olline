@@ -32,10 +32,35 @@ export const addProduct = (req, res) => {
   })
 }
 
-export const updateProduct = (req, res) => {
+export const deleteProduct = async (req, res, next) => {
+
+  const productId = req.params.id_products;
+  const q = "DELETE FROM products WHERE id_products = ?"
+
+  db.query(q, [productId], (err, data) => {
+    if(err) return res.status(500).json(err)
+    return res.status(200).json("Le produit a bien été supprimé.")
+  })
 
 }
 
-export const deleteProduct = (req, res) => {
-  
+export const updateProduct = async (req, res, next) => {
+
+  const productId = req.params.id_products;
+  const q = "UPDATE products SET `name`= ?, `old_price`= ?, `new_price`= ?, `category`= ?, `image`= ?, `description`= ? WHERE id_products = ?"
+
+  const values =[
+    req.body.name,
+      req.body.old_price,
+      req.body.new_price,
+      req.body.category,
+      req.body.image,
+      req.body.description
+  ]
+
+  db.query(q, [...values, productId], (err, data) => {
+    if(err) return res.status(500).json(err)
+    return res.status(200).json("Le produit a bien été modifié.")
+  })
+
 }

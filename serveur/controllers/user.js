@@ -1,4 +1,5 @@
 import { db } from "../connect.js"
+import bcrypt from "bcrypt"
 
 export const getUsers = (req, res) => {
     const q = "SELECT * FROM users"
@@ -21,7 +22,7 @@ export const addUser = async (req, res, next) => {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(req.body.password, salt)
 
-    const q = "INSERT INTO users (`lastname`, `firstname`, `email`, `password`, `dateOfBirth`, `address`) VALUE (?)"
+    const q = "INSERT INTO users (`lastname`, `firstname`, `email`, `password`, `dateOfBirth`, `address`, `role`) VALUE (?)"
 
     const values = [
       req.body.lastname,
@@ -29,7 +30,8 @@ export const addUser = async (req, res, next) => {
       req.body.email,
       hashedPassword,
       req.body.dateOfBirth,
-      req.body.address
+      req.body.address,
+      req.body.role
     ]
 
     db.query(q, [values], (err, data) => {
@@ -54,6 +56,20 @@ export const deleteUser = async (req, res, next) => {
 
 export const updateUser = async (req, res, next) => {
 
-  
+  const userId = req.params.idusers;
+  const q = "UPDATE users SET `lastname`= ?, `firstname`= ?, `email`= ?, `dateOfBirth`= ?, `address`= ? WHERE idusers = ?"
+
+  const values =[
+    req.body.lastname,
+    req.body.firstname,
+    req.body.email,
+    req.body.dateOfBirth,
+    req.body.address
+  ]
+
+  db.query(q, [...values, userId], (err, data) => {
+    if(err) return res.status(500).json(err)
+    return res.status(200).json("Le compte utilisateur a bien été modifié.")
+  })
 
 }

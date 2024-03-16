@@ -1,8 +1,6 @@
 import {useState} from 'react'
 import AddUsers from './AdminUsers/AddUsers'
-import UpdateUsers from './AdminUsers/UpdateUsers'
 import AddProduct from './AdminProduct/AddProduct'
-import UpdateProduct from './AdminProduct/UpdateProduct'
 import './Admin.css'
 import ListProduct from './AdminProduct/ListProduct'
 import ListUsers from './AdminUsers/ListUsers'
@@ -26,22 +24,10 @@ function Admin() {
           Ajouter un utilisateur
         </button>
         <button
-            className={activeTab === "updateusers" ? "active" : ""}
-            onClick={() => handleTabChange("updateusers")}
-        >
-          Modifier un utilisateur
-        </button>
-        <button
           className={activeTab === "addproduct" ? "active" : ""}
           onClick={() => handleTabChange("addproduct")}
         >
           Ajouter un produit
-        </button>
-        <button
-            className={activeTab === "updateproduct" ? "active" : ""}
-            onClick={() => handleTabChange("updateproduct")}
-        >
-          Modifier un produit
         </button>
       </div>
       <div className='admin-tabs-button'>
@@ -62,14 +48,8 @@ function Admin() {
         {(activeTab === "addusers") &&(
           <AddUsers />
         )}
-        {(activeTab === "updateusers") &&(
-          <UpdateUsers />
-        )}
         {(activeTab === "addproduct") &&(
           <AddProduct />
-        )}
-        {(activeTab === "updateproduct") &&(
-          <UpdateProduct />
         )}
         {(activeTab === "listusers") &&(
           <ListUsers />

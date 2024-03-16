@@ -83,7 +83,7 @@ function AddUsers() {
         </input>
       </div>
       <div className="addproduct-item-field">
-        <label htmlFor='dateOfBirth'>Catégorie du produit</label>
+        <label htmlFor='dateOfBirth'>Date de naissance</label>
         <input
           type='date'
           name='dateOfBirth' 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import axios from "axios";
 
-function AdminProduct() {
+function AddProduct() {
 
   const [productDetails, setProductDetails] = useState({
     name:"",
@@ -28,7 +28,6 @@ function AdminProduct() {
     try{
       await axios.post("http://localhost:4000/product/addproduct", productDetails)
       navigate("/admin")
-      console.log("Test")
     } catch(err){
       setErr(err)
       console.log(err)
@@ -36,7 +35,7 @@ function AdminProduct() {
   }
 
   return (
-    <div className='addproduct-container admin-product-container'>
+    <div className='adduser-container admin-product-container'>
       <h2>Ajouter un produit</h2>
       <div className='addproduct-item-field'>
         <label htmlFor='name'>Intitulé du produit</label>
@@ -74,7 +73,7 @@ function AdminProduct() {
         </div>
       </div>
       <div className="addproduct-item-field">
-      <label htmlFor='description'>Catégorie du produit</label>
+      <label htmlFor='description'>Description du produit</label>
         <textarea 
           name='description' 
           id='description' 
@@ -111,4 +110,4 @@ function AdminProduct() {
   )
 }
 
-export default AdminProduct
+export default AddProduct

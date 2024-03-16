@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 function ListUsers() {
@@ -32,8 +33,8 @@ function ListUsers() {
               <th>Nom</th>
               <th>Prénom</th>
               <th>Email</th>
-              <th>dateOfBirth</th>
-              <th>address</th>
+              <th>Date de naissance</th>
+              <th>Adresse</th>
               <th>role</th>
             </tr>
           </thead>
@@ -47,7 +48,7 @@ function ListUsers() {
                 <td>{user.address}</td>
                 <td>{user.role}</td>
                 <div className='table-flex'>
-                  <button>Modifier</button>
+                  <button><Link to={`/admin/updateusers/${user.idusers}`}>Modifier</Link></button>
                   <button className='bouton-supprimer' onClick={() => handleDelete(user.idusers)}>Supprimer</button>
                 </div>
               </tr>

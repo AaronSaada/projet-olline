@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ContextProvider>
     <BrowserRouter>
-      {window.location.href === "http://localhost:3000/admin" ? "" : <Navbar />}
+      <Navbar />
       <App />
     </BrowserRouter>
   </ContextProvider>
