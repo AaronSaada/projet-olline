@@ -1,7 +1,6 @@
 .admin-pannel-container{
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   min-height: 100dvh;
   gap: 2rem;
@@ -10,10 +9,18 @@
 .admin-pannel-container h1 {
   font-size: 3rem;
   font-weight: 700;
+  margin-top: 1rem;
+}
+
+.admin-pannel-container h2{
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 600;
 }
 
 .admin-pannel-wrapper{
-  background-color: aliceblue;
+  background-color: var(--Jaune-Orange);
   padding: 2rem;
   border-radius: 25px;
 }
@@ -62,13 +69,72 @@
   gap: 1rem;
 }
 
-.upload-button{
-  width: 100px;
-  margin: 1rem;
+.addproduct-button{
+  background-color: rgb(52, 52, 52);
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  color: white;
   cursor: pointer;
 }
 
-.addproduct-button{
+.admin-tabs-button{
+  display: flex;
+  gap: 2rem;
+}
+
+.admin-tabs-button button{
+  background-color: var(--Jaune-Orange);
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+th, td{
+  padding: 1rem;
+  text-align: left;
+}
+
+th{
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+td{
+  max-width: 200px;
+  overflow-y: hidden;
+  font-size: 1.2rem;
+}
+
+.table-flex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.table-flex button{
+  cursor: pointer;
+  padding: 1rem;
+  background-color: var(--Confirmer);
+  border-radius: 10px;
+}
+
+.table-flex .bouton-supprimer{
+  background-color: var(--Supprimer);
+}
+
+.adduser-button-container{
+  display: flex;
+  justify-content: center;
+}
+
+.adduser-button{
   background-color: rgb(52, 52, 52);
   padding: 1rem 2rem;
   border-radius: 5px;

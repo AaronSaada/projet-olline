@@ -1,35 +1,41 @@
+import { db } from "../connect.js"
+
 export const getProduct = (req, res) => {
-    
+    const q = "SELECT * FROM products"
+
+    db.query(q, (err, data) => {
+      if(err) return res.json("Echec lors de la récupération des produits")
+      return res.json(data)
+    })
 }
 
-export const createProduct = (req, res) => {
+export const addProduct = (req, res) => {
 
-    const q = "SELECT * FROM products"
-  
-    db.query(q, [req.body.email], (err, data) => {
+  const q = "SELECT * FROM products"
+
+  db.query(q, [req.body.name], (err, data) => {
+    if(err) return res.status(500).json(err)
+    const q = "INSERT INTO products (`name`, `old_price`, `new_price`, `category`, `image`, `description`) VALUE (?)"
+    const values = [
+      req.body.name,
+      req.body.old_price,
+      req.body.new_price,
+      req.body.category,
+      req.body.image,
+      req.body.description
+    ]
+
+    db.query(q, [values], (err, data) => {
       if(err) return res.status(500).json(err)
-      if(data.length === 0) return res.status(404).json("Veuillez remplir les champs")
-  
-      const checkPassword = bcrypt.compareSync(req.body.password, data[0].password)
-  
-      if(!checkPassword) return res.status(400).json("Mauvaise combinaison Email / Mot de passe")
-  
-      const token = jwt.sign(
-        {
-          id:data[0].id
-        }, 
-        process.env.JWT_SECRET, 
-        {
-          expiresIn: 60 * 60 * 24
-        }
-      )
-  
-      const {password, ...others} = data[0]
-  
-      res.cookie("accessToken", token, {
-        httpOnly: false,
-        expire: 60 * 60 * 24
-      }).status(200).json(others)
+      return res.status(200).json("Le produit a été ajouté avec succès")
     })
+  })
+}
+
+export const updateProduct = (req, res) => {
+
+}
+
+export const deleteProduct = (req, res) => {
   
 }

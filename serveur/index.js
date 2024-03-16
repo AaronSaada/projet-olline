@@ -3,7 +3,6 @@ import cors from "cors"
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import bodyParser from "body-parser";
-import jwt from "jsonwebtoken";
 import authRoutes from "./routes/auth.js"
 import userRoutes from "./routes/users.js"
 import productRoutes from "./routes/products.js"
@@ -12,20 +11,23 @@ const app = express();
 
 // Middlewares
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Credentials", true)
+    res.header(
+        "Access-Control-Allow-Credentials",
+        true
+    )
     next();
 })
 app.use(express.json());
 app.use(cors({
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
 app.use(cookieParser());
 
 app.use("/users", userRoutes)
 app.use("/auth", authRoutes)
-app.use("/products", productRoutes)
+app.use("/product", productRoutes)
 
 
 app.use(bodyParser.urlencoded({

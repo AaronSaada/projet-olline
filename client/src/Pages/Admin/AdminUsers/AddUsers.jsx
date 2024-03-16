@@ -1,88 +1,126 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
-function AdminUsers() {
+function AddUsers() {
 
-  const [image, setImage] = useState(false);
-  const [productDetails, setProductDetails] = useState({
-    name:"",
-    image:"",
-    category:"men",
-    description:"",
-    new_price:"",
-    old_price:"",
+  const [inputs, setInputs] = useState({
+    lastname: "",
+    firstname: "",
+    email: "",
+    password: "",
+    dateOfBirth: "",
+    address: "",
+    role: ""
   })
 
-  const imageHandler = (e) => {
-    setImage(e.target.files[0]);
+  const [err, setErr] = useState(false)
+
+  const navigate = useNavigate()
+
+  const handleChange = e => {
+    setInputs(prev => ({...prev, [e.target.name]: e.target.value}) )
   }
 
-  const changeHandler = (e) => {
-    setProductDetails({
-      ...productDetails, [e.target.name]:e.target.value
-    })
-  }
-
-  const addProduct = async () => {
-    console.log(productDetails);
-    let responseData;
-    let product = productDetails;
-
-    let formData = new FormData();
-    formData.append('product', image);
-
-    await fetch('http://localhost:4000/upload', {
-      method:'POST',
-      headers:{
-        Accept:'application/json',
-      },
-      body:formData,
-    }).then((resp) => resp.json()).then((data) => { responseData = data });
-
-    if(responseData.success){
-      product.image = responseData.image_url;
-      console.log(product)
+  const handleClick = async e => {
+    try{
+      await axios.post("http://localhost:4000/users/adduser", inputs)
+      navigate("/admin")
+    } catch(err){
+      setErr(err)
+      
     }
+    console.log(err)
   }
 
   return (
-    <div className='addproduct-container admin-product-container'>
-      <div className='addproduct-item-field'>
-        <label htmlFor='name'>Intitulé du produit</label>
-        <input type='text' name='name' id='name' placeholder="Entrez l'intitulé du produit" value={productDetails.name} onChange={changeHandler} />
-      </div>
+    <div className='adduser-container admin-product-container'>
+      <h2>Ajouter un utilisateur</h2>
       <div className='addproduct-price'>
         <div className="addproduct-item-field">
-          <label htmlFor='old_price'>Prix d'origine</label>
-          <input type='text' name='old_price' id='old_price' placeholder="Entrez le prix d'origine" value={productDetails.old_price} onChange={changeHandler}/>
+          <label htmlFor='lastname'>Nom</label>
+          <input 
+            type='text' 
+            name='lastname' 
+            id='lastname' 
+            placeholder="Entrez un nom" 
+            value={inputs.lastname}
+            onChange={handleChange}
+          />
         </div>
         <div className="addproduct-item-field">
-          <label htmlFor='new_price'>Prix après réduction</label>
-          <input type='text' name='new_price' id='new_price' placeholder='Entrez le prix après réduction' value={productDetails.new_price} onChange={changeHandler}/>
+          <label htmlFor='firstname'>Prénom</label>
+          <input 
+            type='text' 
+            name='firstname' 
+            id='firstname' 
+            placeholder='Entrez un prénom' 
+            value={inputs.firstname} 
+            onChange={handleChange}
+          />
         </div>
       </div>
-      <div className="addproduct-item-field">
-      <label htmlFor='description'>Catégorie du produit</label>
-        <textarea name='description' id='description' placeholder='Entrez la description du produit' value={productDetails.description} onChange={changeHandler}></textarea>
+      <div className='addproduct-item-field'>
+        <label htmlFor='email'>Email</label>
+        <input 
+          type='email' 
+          name='email' 
+          id='email' 
+          placeholder="Entrez un email" 
+          value={inputs.email} 
+          onChange={handleChange} 
+        />
       </div>
       <div className="addproduct-item-field">
-        <label htmlFor='category'>Catégorie du produit</label>
-        <select name='category' id='category' className='add-product-selector' value={productDetails.category} onChange={changeHandler}>
-          <option value="men">Homme</option>
-          <option value="women">Femme</option>
-          <option value="kid">Enfant</option>
-          <option value="baby">Nourisson</option>
-        </select>
+      <label htmlFor='password'>Mot de passe</label>
+        <input
+          type='text'
+          name='password' 
+          id='password' 
+          placeholder='Entrez un mot de passe' 
+          value={inputs.password} 
+          onChange={handleChange}>
+        </input>
       </div>
-      <div className='addproduct-image-flex'>
-        <div className="addproduct-item-field">
-          <label htmlFor='file-input'>
-            <img src="" alt='Téléversez une image' className='upload-button'/>
-          </label>
-          <input type="file" name='image' id='file-input' onChange={imageHandler} hidden/>
-        </div>
-        <button className='addproduct-button' onClick={() => {addProduct()}}>Ajouter le produit</button>
+      <div className="addproduct-item-field">
+        <label htmlFor='dateOfBirth'>Catégorie du produit</label>
+        <input
+          type='date'
+          name='dateOfBirth' 
+          id='dateOfBirth' 
+          className='dateOfBirth' 
+          value={inputs.dateOfBirth} 
+          onChange={handleChange}
+        >
+        </input>
+      </div>
+      <div className="addproduct-item-field">
+        <label htmlFor='address'>Adresse</label>
+        <input 
+          type='text'
+          name='address' 
+          id='address'
+          placeholder="Entrez une adresse"
+          value={inputs.address}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="addproduct-item-field">
+        <label htmlFor='role'>Role</label>
+        <input 
+          type='text'
+          name='role' 
+          id='role'
+          placeholder="Entrez un role"
+          value={inputs.role}
+          onChange={handleChange}
+        />
+      </div>
+      <div className='adduser-button-container'>
+        <button className='adduser-button' onClick={() => {handleClick()}}>Ajouter l'utilisateur</button>
       </div>
     </div>
   )
 }
-export default AdminUsers
+
+export default AddUsers

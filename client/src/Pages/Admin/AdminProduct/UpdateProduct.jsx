@@ -1,7 +1,9 @@
 
 function UpdateProduct() {
   return (
-    <div>UpdateProduct</div>
+    <div>
+      
+    </div>
   )
 }
 

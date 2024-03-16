@@ -2,7 +2,9 @@
 
 function UpdateUsers() {
   return (
-    <div>UpdateUsers</div>
+    <div>
+      
+    </div>
   )
 }
 

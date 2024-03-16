@@ -23,6 +23,8 @@
   --Jaune-Orange : #f6ad59;
   --Rose-Fonce : #f2627c;
   --Fuschia : #f245af;
+  --Confirmer: #336dff;
+  --Supprimer: #ff2e2e;
 }
 
 .container{
@@ -34,6 +36,6 @@ h1, h2, h3, h4, h5, h6{
   font-family: var(--Abel-font);
 }
 
-p, a, input, select, button, label{
+p, a, input, select, button, label, table{
   font-family: var(--Dm-Sans);
 }
