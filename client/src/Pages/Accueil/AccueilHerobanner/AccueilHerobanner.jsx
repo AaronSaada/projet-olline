@@ -8,7 +8,7 @@ function AccueilHerobanner() {
   const {currentUser} = useContext(AuthContext)
 
   return (
-    <div className='accueil-herobanner-container'>
+    <div className='accueil-herobanner-container herobanner-container'>
       <div className='accueil-herobanner-wrapper container'>
         <div className='accueil-herobanner-flex'>
           <div className='accueil-herobanner-text'>

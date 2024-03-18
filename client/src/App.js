@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import Accueil from './Pages/Accueil/Accueil';
 import Connexion from './Pages/Authentification/Connexion/Connexion';
 import Inscription from './Pages/Authentification/Inscription/Inscription';
+import Produits from './Pages/Produits/Produits'; 
 import Admin from './Pages/Admin/Admin';
 import UpdateUsers from './Pages/Admin/AdminUsers/UpdateUsers';
 import UpdateProduct from './Pages/Admin/AdminProduct/UpdateProduct';
@@ -18,6 +19,7 @@ function App() {
       <Route path='/admin' element={<Admin />}/>
       <Route path='/admin/updateusers/:idusers' element={<UpdateUsers />}/>
       <Route path='/admin/updateproduct/:idproducts' element={<UpdateProduct />}/>
+      <Route path='/produits' element={<Produits />}/>
     </Routes>
   );
 }

@@ -31,10 +31,9 @@ export const Navbar = () => {
             <li><Link to='/'>OLLINE</Link></li>
           </div>
           <div className='categories-container'>
-            <li><Link to='/hommes'>Hommes</Link></li>
-            <li><Link to='/femmes'>Femmes</Link></li>
-            <li><Link to='/enfants'>Enfants (3 - 17)</Link></li>
-            <li><Link to='/nourissons'>Nourissons (- 3)</Link></li>
+            <li><Link to='/produits'>Produits</Link></li>
+            <li><Link to='/partenaires'>Nos partenaires</Link></li>
+            <li><Link to='/a-propos'>A propos</Link></li>
           </div>
         </div>
         <div className='connexion-panier-container'>
