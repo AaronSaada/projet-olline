@@ -30,7 +30,7 @@
 }
 
 .accueil-herobanner-text h1{
-  font-size: 5rem;
+  font-size: 4.5rem;
   font-weight: 700;
 }
 
@@ -69,10 +69,39 @@
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
+  margin-bottom: 5rem;
 }
 
+.produits-vedette-container{
+  display: flex;
+  gap: 2rem;
+}
 
+.produits-vedette-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 300px;
+}
 
+.product-image{
+  width: 100%;
+}
+
+.product-name{
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.product-old_price{
+  text-decoration: line-through;
+  color: red;
+}
+
+.product-new_price{
+  font-size: 1.6rem;
+}
 
 
 /*    -------------------------------------   */

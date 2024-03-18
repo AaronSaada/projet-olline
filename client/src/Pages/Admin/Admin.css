@@ -1,0 +1,162 @@
+.admin-pannel-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100dvh;
+  padding-top: 20vh;
+  padding-bottom: 2rem;
+  gap: 2rem;
+}
+
+.admin-pannel-container h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.admin-pannel-container h2, .update-container h2{
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.admin-pannel-wrapper{
+  background-color: var(--Jaune-Orange);
+  padding: 2rem;
+  border-radius: 25px;
+}
+
+.addproduct-item-field{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.addproduct-item-field{
+  font-size: 1.3rem;
+}
+
+.addproduct-item-field input, .addproduct-item-field select{
+  max-width: 600px;
+  height: 50px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: white;
+  outline: 2px rgb(0, 0, 0) solid;
+  margin-bottom: 1.5rem;
+}
+
+.addproduct-item-field textarea{
+  resize: none;
+  max-width: 600px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: white;
+  outline: 2px rgb(0, 0, 0) solid;
+  margin-bottom: 1.5rem;
+}
+
+.addproduct-price{
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.addproduct-image-flex{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.addproduct-button{
+  background-color: rgb(52, 52, 52);
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-tabs-button{
+  display: flex;
+  gap: 2rem;
+}
+
+.admin-tabs-button button{
+  background-color: var(--Jaune-Orange);
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+th, td{
+  padding: 1rem;
+  text-align: left;
+}
+
+th{
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+td{
+  max-width: 200px;
+  overflow-y: hidden;
+  font-size: 1.2rem;
+}
+
+.table-flex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.table-flex button{
+  cursor: pointer;
+  padding: 1rem;
+  background-color: var(--Confirmer);
+  border-radius: 10px;
+}
+
+.table-flex .bouton-supprimer{
+  background-color: var(--Supprimer);
+}
+
+.adduser-button-container{
+  display: flex;
+  justify-content: center;
+}
+
+.adduser-button{
+  background-color: rgb(52, 52, 52);
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.update-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 25vh;
+  margin-bottom: 2rem;
+}
+
+.update-wrapper{
+  background-color: var(--Jaune-Orange);
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.list-product-container img{
+  width: 100px;
+}

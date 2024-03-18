@@ -79,3 +79,8 @@
   display: flex;
   gap: 2rem;
 }
+
+.message-erreur-authentification{
+  color: red;
+  font-size: 1.1rem
+}

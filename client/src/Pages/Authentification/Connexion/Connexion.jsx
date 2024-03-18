@@ -1,45 +1,43 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import '../Authentification.css'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../../Context/AuthContext.js'
 import axios from "axios"
 import StyledButton from '../../../Components/assets/StyledComponents/StyledButton.jsx'
 
 
 function Connexion() {
 
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-
-  const [loginStatus, setLoginStatus] = useState(false);
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: ""
+  })
 
   const navigate = useNavigate()
 
   axios.defaults.withCredentials = true;
 
-  const connexion = (e) => {
-    e.preventDefault()
-    axios.post('http://localhost:4000/connexion', {
-      email: email,
-      password: password
-    }).then((response) => {
-      if(!response.data.auth) {
-        setLoginStatus(false)
-      }
-      else {
-        setLoginStatus(true)
-        localStorage.setItem("token", response.data.token) 
-        navigate("/")
-      }
-    })
+  const [err, setErr] = useState(false);
+
+
+  const handleChange = (e) => {
+    setInputs((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
   }
 
-  useEffect(() => {
-    axios.get("http://localhost:4000/connexion").then((response) => {
-      if(response.data.loggedIn === true){
-        setLoginStatus(true)
-      }
-    })
-  }, []);
+  const {login} = useContext(AuthContext)
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try{
+      await login(inputs)
+      navigate("/")
+    }catch(err){
+      setErr(err.response.data)
+    }
+  }
 
   return (
     <div className='authentification-container'>
@@ -51,9 +49,10 @@ function Connexion() {
             <input 
               type='email' 
               placeholder='Entrez votre Email'
-              onChange={(e) => {
-                setEmail(e.target.value)
-              }}
+              name='email'
+              onChange={
+                handleChange
+              }
               required
             />
           </div>
@@ -62,15 +61,17 @@ function Connexion() {
             <input 
               type='password' 
               placeholder='Entrez votre mot de passe'
-              onChange={(e) => {
-                setPassword(e.target.value)
-              }}
+              name='password'
+              onChange={
+                handleChange
+              }
               required
             />
           </div>
+          {err && <p className='message-erreur-authentification'>{err}</p>}
           <StyledButton 
             className='authentification-connexion-bouton'
-            onClick={connexion}
+            onClick={handleLogin}
           >
             Se connecter
           </StyledButton>
