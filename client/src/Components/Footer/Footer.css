@@ -1,0 +1,43 @@
+footer{
+    background-color: black;
+    color: white;
+    padding: 40px 0;
+}
+
+.footer-wrapper{
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 5rem;
+}
+
+.footer-flex{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-liste p{
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.footer-liste li{
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-social-media ul{
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+
+}
+
+.footer-social-media img{
+    width: 100px;
+}

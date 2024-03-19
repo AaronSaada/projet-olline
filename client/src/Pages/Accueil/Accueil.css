@@ -113,3 +113,29 @@
 
 
 /*    -------------------------------------   */
+
+
+/*                PARTENAIRES                 */
+
+.partenaires-container{
+  background-color: rgb(231, 231, 231);
+  padding: 20px 0;
+}
+
+.partenaires-scroller{
+  max-width: 90vw;
+  margin: 0 auto;
+}
+
+.scroller__inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding-block: 1rem;
+}
+
+
+.scroller__inner img{
+  width: 200px;
+}

@@ -24,31 +24,34 @@ export const Navbar = () => {
   }
 
   return (
-    <div className='navbar container'>
-      <ul>
-        <div className='logo-categories-container'>
-          <div className='logo-container'>
-            <li><Link to='/'>OLLINE</Link></li>
+    <header>
+      <div className='navbar container'>
+        <ul>
+          <div className='logo-categories-container'>
+            <div className='logo-container'>
+              <li><Link to='/'>OLLINE</Link></li>
+            </div>
+            <div className='categories-container'>
+              <li><Link to='/produits'>Produits</Link></li>
+              <li><Link to='/partenaires'>Nos partenaires</Link></li>
+              <li><Link to='/a-propos'>A propos</Link></li>
+            </div>
           </div>
-          <div className='categories-container'>
-            <li><Link to='/produits'>Produits</Link></li>
-            <li><Link to='/partenaires'>Nos partenaires</Link></li>
-            <li><Link to='/a-propos'>A propos</Link></li>
+          <div className='connexion-panier-container'>
+            
+            {currentUser && currentUser.role === "admin"
+              ? <Link to='/admin'>Admin</Link>
+              : <li><Link to='/panier'>Panier</Link></li>
+            }
+            {currentUser === null
+              ? <Link to='/connexion'><StyledButton>Connexion</StyledButton></Link>
+              : <StyledButton onClick={handleClick}>Déconnexion</StyledButton>
+            }
+            
           </div>
-        </div>
-        <div className='connexion-panier-container'>
-          
-          {currentUser && currentUser.role === "admin"
-            ? <Link to='/admin'>Admin</Link>
-            : <li><Link to='/panier'>Panier</Link></li>
-          }
-          {currentUser === null
-            ? <Link to='/connexion'><StyledButton>Connexion</StyledButton></Link>
-            : <StyledButton onClick={handleClick}>Déconnexion</StyledButton>
-          }
-          
-        </div>
-      </ul>
-    </div>
+        </ul>
+      </div>
+    </header>
+    
   )
 }
