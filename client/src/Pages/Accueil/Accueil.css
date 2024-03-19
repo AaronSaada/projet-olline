@@ -72,6 +72,8 @@
 .produits-vedette-container{
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .produits-vedette-wrapper{
@@ -98,6 +100,15 @@
 
 .product-new_price{
   font-size: 1.6rem;
+}
+
+.produits-vedette-lien-image{
+  height: 300px;
+  width: 300px;
+}
+
+.produits-vedette-lien-image img{
+  width: 100%;
 }
 
 

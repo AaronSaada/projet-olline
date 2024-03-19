@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
 import axios from 'axios'
+import ImageIndisponible from "../../../Components/assets/images/image-indisponible.jpg"
 
 function AccueilVedettes() {
 
@@ -19,8 +20,8 @@ function AccueilVedettes() {
         <div className='produits-vedette-container'>
           {products && products.map((product) => (
             <div className='produits-vedette-wrapper'>
-              <Link to={`products/${product.name}`}>
-                <img src={product.image} alt={product.image || "Image introuvable"} className='product-image'/>
+              <Link to={`products/${product.name}`} className='produits-vedette-lien-image'>
+                <img src={product.image || ImageIndisponible} alt={product.image || "Image introuvable"} className='product-image'/>
               </Link>
               <p className='product-name'>{product.name}</p>
             </div>
