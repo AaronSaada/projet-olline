@@ -1,0 +1,16 @@
+.partenaires-container{
+    min-height: 100dvh;
+    background-color: var(--);
+    padding-top: 25vh;
+}
+
+.partenaires-wrapper{
+    background-color: red;
+    text-align: center;
+}
+
+.partenaires-wrapper h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}

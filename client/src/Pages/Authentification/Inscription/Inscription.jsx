@@ -122,15 +122,13 @@ function Inscription() {
               onChange={handleChange}
               name='email'
               error={!!err.email}
-              helperText={
-                err.email && (
-                  <p className='message-erreur-regex'>
-                    {err.email}
-                  </p>
-                )
-              }
               required
             />
+            {err.email && (
+              <p className='message-erreur-regex'>
+                {err.email}
+              </p>
+            )}
           </div>
           <div className='form-input-flex'>
             <label>Mot de passe</label>
@@ -140,15 +138,13 @@ function Inscription() {
               onChange={handleChange}
               name='password'
               error={!!err.password}
-              helperText={
-                err.password && (
-                  <p className='message-erreur-regex'>
-                    {err.password}
-                  </p>
-                )
-              }
               required
             />
+            {err.password && (
+              <p className='message-erreur-regex'>
+                {err.password}
+              </p>
+            )}
           </div>
           <div className='form-input-flex'>
             <label>Date de naissance</label>
@@ -157,15 +153,13 @@ function Inscription() {
               name='dateOfBirth'
               onChange={handleChange}
               error={!!err.dateOfBirth}
-              helperText={
-                err.dateOfBirth && (
-                  <p className='message-erreur-regex'>
-                    {err.dateOfBirth}
-                  </p>
-                )
-              }
               required
             />
+            {err.dateOfBirth && (
+              <p className='message-erreur-regex'>
+                {err.dateOfBirth}
+              </p>
+            )}
           </div>
           <div className='form-input-flex'>
             <label>Adresse</label>
@@ -175,15 +169,13 @@ function Inscription() {
               name='address'
               onChange={handleChange}
               error={!!err.address}
-              helperText={
-                err.address && (
-                  <p className='message-erreur-regex'>
-                    {err.address}
-                  </p>
-                )
-              }
               required
             />
+            {err.address && (
+              <p className='message-erreur-regex'>
+                {err.address}
+              </p>
+            )}
           </div>
           {err && <p className='message-erreur-authentification'>{err.msg}</p>}
           <StyledButton 

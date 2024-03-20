@@ -84,3 +84,7 @@
   color: red;
   font-size: 1.1rem
 }
+
+.message-erreur-regex{
+  color: red;
+}

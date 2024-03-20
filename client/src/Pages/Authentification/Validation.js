@@ -12,7 +12,7 @@ export default function Validation(values) {
     }
 
     if (!values.email.trim()) {
-        errors.email = "Un Email est Requis !";
+        errors.email = "Votre email ne peut pas être vide !";
     } else if (!email_pattern.test(values.email)) {
         errors.email = "L'email est incorrect";
     }
