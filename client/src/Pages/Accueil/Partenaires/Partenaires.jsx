@@ -6,7 +6,7 @@ import Zara from "../../../Components/assets/images/Zara.png"
 
 function Partenaires() {
   return (
-    <div className="partenaires-container">
+    <div className="accueil-partenaires-container">
         <div className="partenaires-scroller">
             <ul className="partenaires-liste scroller__inner">
                 <li><img src={Nike} alt="Partenaire Nike"/></li>
