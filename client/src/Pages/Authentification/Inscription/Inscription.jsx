@@ -24,27 +24,27 @@ function Inscription() {
     setInputs(prev => ({...prev, [e.target.name]: e.target.value}) )
   }
 
-  const handleClick = async e => {
-    e.preventDefault()
+  // const handleClick = async e => {
+  //   e.preventDefault()
 
-    const validationErrors = Validation(inputs);
-    setErr(validationErrors);
+  //   const validationErrors = Validation(inputs);
+  //   setErr(validationErrors);
 
-    if(Object.keys(validationErrors).length === 0) {
-      await axios.post("http://localhost:4000/auth/inscription", inputs).then((result) => {
-        navigate("/connexion")
-        console.log(result)
-      })
-      .catch((err) => {
-        if(err.response){
-          console.error("Erreur lors de la réponse du serveur : ", err.response.data)
-        }else if(err.request){
-          console.error("Impossible de récupérer la réponse du serveur")
-        }else {
-          console.log("Erreur lors de la configuration de la requête : ", err.message)
-        }
-      })
-    }
+  //   if(Object.keys(validationErrors).length === 0) {
+  //     await axios.post("http://localhost:4000/auth/inscription", inputs).then((result) => {
+  //       navigate("/connexion")
+  //       console.log(result)
+  //     })
+  //     .catch((err) => {
+  //       if(err.response){
+  //         console.error("Erreur lors de la réponse du serveur : ", err.response.data)
+  //       }else if(err.request){
+  //         console.error("Impossible de récupérer la réponse du serveur")
+  //       }else {
+  //         console.log("Erreur lors de la configuration de la requête : ", err.message)
+  //       }
+  //     })
+  //   }
 
     // try{
     //   await axios.post("http://localhost:4000/auth/inscription", inputs)
@@ -52,12 +52,34 @@ function Inscription() {
     // } catch(err){
     //   console.log(err)
     // }
-  }
+  //}
+  const handleClick = e => {
+    e.preventDefault();
+
+    const validationErrors = Validation(inputs);
+    setErr(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+        axios.post("http://localhost:4000/auth/inscription", inputs)
+        .then(response =>  navigate("/connexion"))
+//        navigate("/connexion");
+      .catch((err) => {
+        if (err.response) {
+          console.error("Erreur lors de la réponse du serveur : ", err.response.data);
+        } else if (err.request) {
+          console.error("Impossible de récupérer la réponse du serveur");
+        } else {
+          console.log("Erreur lors de la configuration de la requête : ", err.message);
+        }}
+      )
+    }
+  };
+  console.log(err)
 
   return (
     <div className='authentification-container'>
       <div className='authentification-wrapper'>
-      <h1>Inscription</h1>
+        <h1>Inscription</h1>
         <form>
           <div className='form-name-flex'>
             <div className='form-input-flex'>
@@ -67,16 +89,13 @@ function Inscription() {
                 placeholder='Entrez votre nom'
                 name='lastname'
                 onChange={handleChange}
-                error={!!err.lastname}
-                helperText={
-                  err.lastname && (
-                    <p className='message-erreur-regex'>
-                      {err.lastname}
-                    </p>
-                  )
-                }
                 required
               />
+              {err.lastname && (
+                <p className='message-erreur-regex'>
+                  {err.lastname}
+                </p>
+              )}
             </div>
             <div className='form-input-flex'>
               <label>Prénom</label>
@@ -86,15 +105,13 @@ function Inscription() {
                 name='firstname'
                 onChange={handleChange}
                 error={!!err.firstname}
-                helperText={
-                  err.firstname && (
-                    <p className='message-erreur-regex'>
-                      {err.firstname}
-                    </p>
-                  )
-                }
                 required
-              />
+                />
+                {err.firstname && (
+                  <p className='message-erreur-regex'>
+                    {err.firstname}
+                  </p>
+                )}
             </div>
           </div>
           <div className='form-input-flex'>
@@ -168,7 +185,7 @@ function Inscription() {
               required
             />
           </div>
-          {err && <p className='message-erreur-authentification'>{err}</p>}
+          {err && <p className='message-erreur-authentification'>{err.msg}</p>}
           <StyledButton 
             className='authentification-connexion-bouton'
             onClick={handleClick}
