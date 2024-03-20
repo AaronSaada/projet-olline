@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import { useState, useContext } from 'react'
 import '../Authentification.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../../Context/AuthContext.js'
@@ -18,7 +18,6 @@ function Connexion() {
   axios.defaults.withCredentials = true;
 
   const [err, setErr] = useState(false);
-
 
   const handleChange = (e) => {
     setInputs((prev) => ({

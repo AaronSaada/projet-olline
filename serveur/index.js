@@ -6,8 +6,11 @@ import bodyParser from "body-parser";
 import authRoutes from "./routes/auth.js"
 import userRoutes from "./routes/users.js"
 import productRoutes from "./routes/products.js"
+import limiter from "./RateLimiter.js";
+
 
 const app = express();
+
 
 // Middlewares
 app.use((req, res, next) => {
@@ -24,6 +27,8 @@ app.use(cors({
     credentials: true
 }));
 app.use(cookieParser());
+
+app.use(limiter)
 
 app.use("/users", userRoutes)
 app.use("/auth", authRoutes)

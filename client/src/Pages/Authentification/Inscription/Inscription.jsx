@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import '../Authentification.css'
 import { Link, useNavigate } from 'react-router-dom'
+import Validation from "../Validation";
 import StyledButton from '../../../Components/assets/StyledComponents/StyledButton.jsx'
 
 function Inscription() {
@@ -26,12 +27,31 @@ function Inscription() {
   const handleClick = async e => {
     e.preventDefault()
 
-    try{
-      await axios.post("http://localhost:4000/auth/inscription", inputs)
-      navigate("/connexion")
-    } catch(err){
-      setErr(err.reponse.data)
+    const validationErrors = Validation(inputs);
+    setErr(validationErrors);
+
+    if(Object.keys(validationErrors).length === 0) {
+      await axios.post("http://localhost:4000/auth/inscription", inputs).then((result) => {
+        navigate("/connexion")
+        console.log(result)
+      })
+      .catch((err) => {
+        if(err.response){
+          console.error("Erreur lors de la réponse du serveur : ", err.response.data)
+        }else if(err.request){
+          console.error("Impossible de récupérer la réponse du serveur")
+        }else {
+          console.log("Erreur lors de la configuration de la requête : ", err.message)
+        }
+      })
     }
+
+    // try{
+    //   await axios.post("http://localhost:4000/auth/inscription", inputs)
+    //   navigate("/connexion")
+    // } catch(err){
+    //   console.log(err)
+    // }
   }
 
   return (
@@ -47,6 +67,14 @@ function Inscription() {
                 placeholder='Entrez votre nom'
                 name='lastname'
                 onChange={handleChange}
+                error={!!err.lastname}
+                helperText={
+                  err.lastname && (
+                    <p className='message-erreur-regex'>
+                      {err.lastname}
+                    </p>
+                  )
+                }
                 required
               />
             </div>
@@ -57,6 +85,14 @@ function Inscription() {
                 placeholder='Entrez votre prénom'
                 name='firstname'
                 onChange={handleChange}
+                error={!!err.firstname}
+                helperText={
+                  err.firstname && (
+                    <p className='message-erreur-regex'>
+                      {err.firstname}
+                    </p>
+                  )
+                }
                 required
               />
             </div>
@@ -68,6 +104,14 @@ function Inscription() {
               placeholder='Entrez votre email'
               onChange={handleChange}
               name='email'
+              error={!!err.email}
+              helperText={
+                err.email && (
+                  <p className='message-erreur-regex'>
+                    {err.email}
+                  </p>
+                )
+              }
               required
             />
           </div>
@@ -78,6 +122,14 @@ function Inscription() {
               placeholder='Entrez votre mot de passe'
               onChange={handleChange}
               name='password'
+              error={!!err.password}
+              helperText={
+                err.password && (
+                  <p className='message-erreur-regex'>
+                    {err.password}
+                  </p>
+                )
+              }
               required
             />
           </div>
@@ -87,6 +139,14 @@ function Inscription() {
               type='date'
               name='dateOfBirth'
               onChange={handleChange}
+              error={!!err.dateOfBirth}
+              helperText={
+                err.dateOfBirth && (
+                  <p className='message-erreur-regex'>
+                    {err.dateOfBirth}
+                  </p>
+                )
+              }
               required
             />
           </div>
@@ -97,6 +157,14 @@ function Inscription() {
               placeholder='Entrez votre adresse'
               name='address'
               onChange={handleChange}
+              error={!!err.address}
+              helperText={
+                err.address && (
+                  <p className='message-erreur-regex'>
+                    {err.address}
+                  </p>
+                )
+              }
               required
             />
           </div>

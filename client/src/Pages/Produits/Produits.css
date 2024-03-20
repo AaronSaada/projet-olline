@@ -22,20 +22,16 @@
 /*          FILTRE           */
 
 .filtre-container{
-    position: relative;
-    height: 80vh;
+    position: sticky;
     width: 15vw;
 }
 
 .filtre-wrapper{
-    position: sticky;
-    top: 25%;
     box-shadow: 3px 3px 10px rgba(155, 155, 155, 0.349);
-    height: 80vh;
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    padding: 2rem 0 0 2rem ;
+    padding: 2rem 0 2rem 2rem ;
 }
 
 .filtre-wrapper h2 {

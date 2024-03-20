@@ -38,10 +38,10 @@ function Footer() {
             </div>
             <div className="footer-social-media">
                 <ul>
-                    <li><Link to="www.facebook.com" target="_blank"><img src={Facebook} alt="Lien Facebook Olline"/></Link></li>
-                    <li><Link to="www.x.com" target="_blank"><img src={X} alt="Lien X Olline"/></Link></li>
-                    <li><Link to="www.youtube.com" target="_blank"><img src={Youtube} alt="Lien Youtube Olline"/></Link></li>
-                    <li><Link to="www.linkedin.com" target="_blank"><img src={linkedin} alt="Lien LinkedIn Olline"/></Link></li>
+                    <li><a href="https://www.facebook.com" target="_blank"><img src={Facebook} alt="Lien Facebook Olline"/></a></li>
+                    <li><a href="https://www.x.com" target="_blank"><img src={X} alt="Lien X Olline"/></a></li>
+                    <li><a href="https://www.youtube.com" target="_blank"><img src={Youtube} alt="Lien Youtube Olline"/></a></li>
+                    <li><a href="https://www.linkedin.com" target="_blank"><img src={linkedin} alt="Lien LinkedIn Olline"/></a></li>
                 </ul>
             </div>
         </div>

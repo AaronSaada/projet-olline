@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import AccueilHerobannerImage from '../../../Components/assets/images/accueil-herobanner-image.png'
 import StyledButton from '../../../Components/assets/StyledComponents/StyledButton'
 import { AuthContext } from '../../../Context/AuthContext.js'
@@ -14,7 +15,7 @@ function AccueilHerobanner() {
           <div className='accueil-herobanner-text'>
             <h1>{currentUser ? `Bienvenue ${currentUser.firstname}` : "Bienvenue"}, découvrez notre nouvelle collection hiver</h1>
             <p>Plongez dans l'élégance chaleureuse de notre nouvelle collection d'hiver, où le style rencontre la saison glaciale avec des pièces qui vous enveloppent de confort et d'une touche de glamour hivernal.</p>
-            <StyledButton className='accueil-herobanner-decouvrir'>Découvrir</StyledButton>
+            <Link to='/produits'><StyledButton className='accueil-herobanner-decouvrir'>Découvrir</StyledButton></Link>
           </div>
           <div className='accueil-herobanner-image'>
             <img src={AccueilHerobannerImage}/>
