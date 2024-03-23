@@ -41,3 +41,25 @@ footer{
 .footer-social-media img{
     width: 100px;
 }
+
+@media(max-width: 600px){
+
+    .footer-flex{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-liste{
+        margin-top: 40px;
+    }
+
+    .footer-social-media ul{
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .footer-social-media img{
+        width: 50px;
+    }
+}

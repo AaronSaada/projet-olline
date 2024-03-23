@@ -8,7 +8,7 @@ function Produit() {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    axios.get("http://localhost:4000/product/products")
+    axios.get("http://localhost:4000/product/products/" + products.name)
       .then(res => setProducts(res.data))
       .catch(err => console.log(err))
   }, [])

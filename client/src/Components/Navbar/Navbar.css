@@ -61,3 +61,32 @@
   align-items: center;
   gap: 4rem;
 }
+
+@media(max-width: 1400px){
+  .navbar{
+    font-size: 1rem;
+  }
+
+  .logo-container li{
+    font-size: 3rem;
+  }
+
+  .logo-categories-container{
+    gap: 2dvw;
+  }
+
+  .categories-container{
+    gap: 2rem;
+  }
+  
+  .connexion-panier-container{
+    gap: 2rem;
+  }
+}
+
+@media(max-width: 600px){
+  .navbar{
+    font-size: 1rem;
+    display: none;
+  }
+}
