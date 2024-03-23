@@ -4,6 +4,7 @@ import Accueil from './Pages/Accueil/Accueil';
 import Connexion from './Pages/Authentification/Connexion/Connexion';
 import Inscription from './Pages/Authentification/Inscription/Inscription';
 import Produits from './Pages/Produits/Produits'; 
+import Produit from './Pages/Produit/Produit';
 import Admin from './Pages/Admin/Admin';
 import UpdateUsers from './Pages/Admin/AdminUsers/UpdateUsers';
 import UpdateProduct from './Pages/Admin/AdminProduct/UpdateProduct';
@@ -26,6 +27,7 @@ function App() {
         <Route path='/admin/updateproduct/:idproducts' element={<UpdateProduct />}/>
       </Route>
       <Route path='/produits' element={<Produits />}/>
+      <Route path='/produits/products/:name' element={<Produit />}/>
       <Route path='/partenaires' element={<Partenaires/>}/>
     </Routes>
   );
