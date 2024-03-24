@@ -8,7 +8,7 @@ import Produit from './Pages/Produit/Produit';
 import Admin from './Pages/Admin/Admin';
 import UpdateUsers from './Pages/Admin/AdminUsers/UpdateUsers';
 import UpdateProduct from './Pages/Admin/AdminProduct/UpdateProduct';
-import {PrivateRoutesAdmin, PrivateRoutesAuthenticated} from './Components/Utils/ProtectedRoutes';
+import { PrivateRoutesAdmin, PrivateRoutesAuthenticated } from './Components/Utils/ProtectedRoutes';
 import Partenaires from './Pages/Partenaires/Partenaires';
 
 
