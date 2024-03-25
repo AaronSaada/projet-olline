@@ -4,11 +4,6 @@ import axios from "axios";
 export const AuthContext = createContext()
 
 export const ContextProvider = ({children}) => {
-  // const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("accessToken")) || null)
-  
-  // useEffect(() => {
-  //  localStorage.setItem("user", JSON.stringify(currentUser))
-  // }, [currentUser])
 
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null

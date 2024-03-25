@@ -40,9 +40,10 @@ export const Navbar = () => {
           <div className='connexion-panier-container'>
             
             {currentUser && currentUser.role === "admin"
-              ? <Link to='/admin'>Admin</Link>
+              ? <li><Link to='/admin'>Admin</Link></li>
               : <li><Link to='/panier'>Panier</Link></li>
             }
+            
             {currentUser === null
               ? <Link to='/connexion'><StyledButton>Connexion</StyledButton></Link>
               : <StyledButton onClick={handleClick}>Déconnexion</StyledButton>

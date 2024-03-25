@@ -24,35 +24,6 @@ function Inscription() {
     setInputs(prev => ({...prev, [e.target.name]: e.target.value}) )
   }
 
-  // const handleClick = async e => {
-  //   e.preventDefault()
-
-  //   const validationErrors = Validation(inputs);
-  //   setErr(validationErrors);
-
-  //   if(Object.keys(validationErrors).length === 0) {
-  //     await axios.post("http://localhost:4000/auth/inscription", inputs).then((result) => {
-  //       navigate("/connexion")
-  //       console.log(result)
-  //     })
-  //     .catch((err) => {
-  //       if(err.response){
-  //         console.error("Erreur lors de la réponse du serveur : ", err.response.data)
-  //       }else if(err.request){
-  //         console.error("Impossible de récupérer la réponse du serveur")
-  //       }else {
-  //         console.log("Erreur lors de la configuration de la requête : ", err.message)
-  //       }
-  //     })
-  //   }
-
-    // try{
-    //   await axios.post("http://localhost:4000/auth/inscription", inputs)
-    //   navigate("/connexion")
-    // } catch(err){
-    //   console.log(err)
-    // }
-  //}
   const handleClick = e => {
     e.preventDefault();
 
@@ -62,7 +33,6 @@ function Inscription() {
     if (Object.keys(validationErrors).length === 0) {
         axios.post("http://localhost:4000/auth/inscription", inputs)
         .then(response =>  navigate("/connexion"))
-//        navigate("/connexion");
       .catch((err) => {
         if (err.response) {
           console.error("Erreur lors de la réponse du serveur : ", err.response.data);
