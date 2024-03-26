@@ -116,6 +116,7 @@ function AddUsers() {
           onChange={handleChange}
         />
       </div>
+      {err && <p>{err}</p>}
       <div className='adduser-button-container'>
         <button className='adduser-button' onClick={() => {handleClick()}}>Ajouter l'utilisateur</button>
       </div>

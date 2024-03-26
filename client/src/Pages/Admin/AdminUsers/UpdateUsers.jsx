@@ -111,6 +111,7 @@ function UpdateUsers() {
             onChange={handleChange}
           />
         </div>
+        {err && <p>{err}</p>}
         <div className='adduser-button-container'>
           <button className='adduser-button' onClick={() => {handleClick()}}>Appliquer les modifications</button>
         </div>

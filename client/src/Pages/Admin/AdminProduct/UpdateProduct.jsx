@@ -108,6 +108,7 @@ function UpdateProduct() {
             </label>
             <input type="file" name='image' id='file-input' hidden/>
           </div>
+          {err && <p>{err}</p>}
           <button className='addproduct-button' onClick={() => {handleClick()}}>Appliquer les modifications</button>
         </div>
       </div>

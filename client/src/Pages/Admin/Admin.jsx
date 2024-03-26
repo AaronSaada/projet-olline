@@ -10,7 +10,7 @@ function Admin() {
   const [activeTab, setActiveTab] = useState("addusers");
 
     const handleTabChange = (tab) => {
-        setActiveTab(tab);
+      setActiveTab(tab);
     };
 
   return (

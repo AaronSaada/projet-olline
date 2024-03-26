@@ -96,6 +96,7 @@ function AddProduct() {
           <option value="baby">Nourisson</option>
         </select>
       </div>
+      {err && <p>{err}</p>}
       <div className="adduser-button-container">
         <button className='addproduct-button' onClick={() => {handleClick()}}>Ajouter le produit</button>
       </div>
