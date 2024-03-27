@@ -8,20 +8,32 @@ import { AnnulerSaCommande } from '../../Pages/Panier/Panier'
 
 export const Navbar = () => {
 
+  // Importation de la variable currentUser depuis la page AuthContext
   const {currentUser} = useContext(AuthContext)
+  // Stock la fonction useNavigate dans navigate
   const navigate = useNavigate()
 
+  // Bouton pour l'appuie du bouton déconnexion
   const handleClick = async e => {
+    // Empêche la page de se rafraîchir
     e.preventDefault()
 
+    // Si l'opération est un succès
     try{
+      // La déconnexion peut s'enclencher
       await axios.post("http://localhost:4000/auth/deconnexion")
+      // On supprimer l'objet "user" du localstorage
       localStorage.removeItem("user")
+      // On vide le panier
       AnnulerSaCommande()
+      // On navigue jusqu'à la page connexion
       navigate("/connexion")
+      // On refraîchit la page pour afficher les nouveaux éléments
       window.location.reload()
+    // S'il y a une erreur
     } catch(err){
-      console.log(err)
+      // On la retourne
+      return err
     }
   }
 

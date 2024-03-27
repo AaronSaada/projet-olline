@@ -20,7 +20,7 @@ function CarteProduits() {
           {products && products.map((product) => (
             <div className='produits-vedette-wrapper'>
               <Link to={`products/${product.name}`}>
-                <img src={product.image} alt={product.image || "Image introuvable"} className='product-image'/>
+                <img src={product.image || Image } alt={product.image || "Image introuvable"} className='product-image'/>
               </Link>
               <p className='product-name'>{product.name}</p>
               <button onClick={() => AjouterLeProduitAuPanier(product.id_products)}>Ajouter au panier</button>
