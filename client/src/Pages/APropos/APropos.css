@@ -1,0 +1,108 @@
+.apropos-container{
+  padding-top: 20vh;
+}
+
+.apropos-wrapper{
+  padding: 50px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.qui-sommes-nous h1{
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 5rem;
+  color: var(--Jaune-Orange);
+}
+
+.qui-sommes-nous p{
+  font-size: 2rem;
+}
+
+.apropos-membre{
+  display: flex;
+  align-items: center;
+  gap: 10%;
+}
+
+.apropos-membre-image{
+  flex: 1;
+}
+
+.apropos-membre-image img{
+  width: 100%;
+  box-shadow: -10px 10px var(--Jaune-Orange);
+}
+
+.apropos-membre-description{
+  flex: 2;
+  text-align: right;
+}
+
+.apropos-membre-description h2{
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-decoration: underline dotted var(--Jaune-Orange);
+  font-weight: 700;
+}
+
+.apropos-membre-description p{
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.apropos-membre:nth-child(odd){
+  flex-direction: row-reverse;
+}
+
+.apropos-membre:nth-child(odd) .apropos-membre-description{
+  text-align: left;
+}
+
+.apropos-membre:nth-child(odd) .apropos-membre-description h2{
+  text-decoration: underline dotted var(--Saumon);
+}
+
+.apropos-membre:nth-child(odd) .apropos-membre-image img{
+  box-shadow: 10px 10px var(--Saumon);
+}
+
+@media(max-width:600px){
+
+  .apropos-container{
+    padding-top: 10vh;
+  }
+
+  .qui-sommes-nous h1{
+    font-size: 3.5rem;
+  }
+
+  .qui-sommes-nous p{
+    font-size: 1.3rem;
+  }
+
+  .apropos-membre{
+    display: block;
+    text-align: center;
+  }
+
+  .apropos-membre-description{
+    text-align: center
+  }
+  
+  .apropos-membre-description h2{
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
+  
+  .apropos-membre-description p{
+    font-size: 1.3rem;
+  }
+  
+  .apropos-membre:nth-child(odd) .apropos-membre-description{
+    text-align: center;
+  }
+
+}

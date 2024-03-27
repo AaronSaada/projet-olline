@@ -11,29 +11,19 @@ function Footer() {
         <div className="footer-wrapper">
             <div className="footer-flex">
                 <ul className="footer-liste">
-                    <p>Pages</p>
+                    <p>Olline</p>
                     <li><Link to='/'>Accueil</Link></li>
                     <li><Link to='/produits'>Produits</Link></li>
                     <li><Link to='/partenaires'>Nos partenaires</Link></li>
-                    <li><Link to='/a-propos'>A propos</Link></li>
+                    <li><Link to='/apropos'>A propos</Link></li>
                 </ul>
                 <ul className="footer-liste">
-                    <p>Chèques Cadeaux</p>
-                    <li><Link to='/'>Offrir un chèque cadeau</Link></li>
-                    <li><Link to='/'>Utiliser une carte cadeau</Link></li>
-                    <li><Link to='/'>Chèques cadeaux d'entreprise</Link></li>
-                </ul>
-                <ul className="footer-liste">
-                    <p>Olline</p>
-                    <li><Link to='/'>Emplois</Link></li>
-                    <li><Link to='/'>Question marketing</Link></li>
-                    <li><Link to='/'>Abonnements</Link></li>
-                </ul>
-                <ul className="footer-liste">
-                    <p>Nos services</p>
-                    <li><Link to='/'>Programme partenaire</Link></li>
-                    <li><Link to='/'>Olline Marketing Service</Link></li>
-                    <li><Link to='/'>Nous contacter</Link></li>
+                    <p>Sécurité et vie privée</p>
+                    <li><a href="https://www.francenum.gouv.fr/guides-et-conseils/developpement-commercial/site-web/rediger-des-conditions-generales-dutilisation" target="_blank">Conditions Générales d'Utilisation</a></li>
+                    <li><a href="https://www.cnil.fr/fr" target="_blank">CNIL</a></li>
+                    <li><a href="https://entreprendre.service-public.fr/vosdroits/F33527#:~:text=Les%20conditions%20générales%20de%20vente%20ont%20pour%20objectif%20de%20donner,vente%20dans%20votre%20échange%20commercial." target="_blank">Conditions Générales de Vente</a></li>
+                    <li><a href="https://www.economie.gouv.fr/politique-confidentialite" target="_blank">Politique de Confidentialité</a></li>
+                    <li><a href="https://www.cnil.fr/fr/rgpd-de-quoi-parle-t-on" target="_blank">Loi RGPD</a></li>
                 </ul>
             </div>
             <div className="footer-social-media">

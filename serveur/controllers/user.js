@@ -58,7 +58,6 @@ export const updateUser = async (req, res, next) => {
 
   const userId = req.params.idusers;
 
-  
   const q = "UPDATE users SET `lastname`= ?, `firstname`= ?, `email`= ?, `dateOfBirth`= ?, `address`= ? WHERE idusers = ?"
 
   const values =[

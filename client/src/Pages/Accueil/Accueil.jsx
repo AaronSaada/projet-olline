@@ -2,7 +2,7 @@ import React from 'react'
 import './Accueil.css'
 import AccueilHerobanner from './AccueilHerobanner/AccueilHerobanner'
 import AccueilVedettes from './AccueilVedettes/AccueilVedettes'
-import Partenaires from './Partenaires/Partenaires'
+import Partenaires from './AccueilPartenaires/AccueilPartenaires'
 
 function Accueil() {
   return (

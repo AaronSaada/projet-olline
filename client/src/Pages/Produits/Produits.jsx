@@ -11,7 +11,7 @@ function Produits() {
         <div className='produits-flex'>
             <Filtre />
             <div className='carte-produits-flex'>
-              <h2>Produits</h2>   
+              <h2>PRODUITS</h2>   
               <CarteProduits />
             </div>
         </div>

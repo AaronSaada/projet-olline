@@ -78,3 +78,63 @@
 .accueil-partenaires-container{
     background-color: rgb(230, 230, 230);
 }
+
+@media(max-width: 600px){
+    
+    .produits-herobanner-titre{
+        text-align: center;
+        font-size: 2rem;
+        line-height: 2;
+        font-weight: 600;
+        width: 100vw;
+    }
+    
+    .produits-herobanner-titre span {
+        font-size: 6rem;
+        color: white;
+        font-weight: 700;
+    }
+
+    .produits-flex{
+        flex-direction: column;
+    }
+
+    .filtre-container{
+        width: 100%;
+    }
+    
+    .filtre-wrapper{
+        padding: 2rem 1rem ;
+    }
+    
+    .filtre-wrapper h2 {
+        text-align: center;
+    }
+    
+    .filtre-wrapper legend{
+        font-size: 1.2rem;
+        text-align: center;
+    }
+    
+    .filtre-wrapper label{
+        font-size: 1rem;
+    }
+    
+    .filtre-wrapper input{
+        margin: 0;
+        margin-top: 1rem;
+
+    }
+
+    .filtre-wrapper fieldset{
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .filtre-categorie-div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+    }
+}

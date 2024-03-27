@@ -50,7 +50,7 @@ function Inscription() {
     <div className='authentification-container'>
       <div className='authentification-wrapper'>
         <h1>Inscription</h1>
-        <form>
+        <form method='post'>
           <div className='form-name-flex'>
             <div className='form-input-flex'>
               <label>Nom</label>

@@ -47,7 +47,6 @@ function Filtre() {
                     </div>
                 </fieldset>
             </div>
-            
         </div>
     </div>
   )

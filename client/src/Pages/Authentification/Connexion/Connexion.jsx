@@ -42,7 +42,7 @@ function Connexion() {
     <div className='authentification-container'>
       <div className='authentification-wrapper'>
         <h1>Connexion</h1>
-        <form>
+        <form method='post'>
           <div className='form-input-flex'>
             <label>Email</label>
             <input 

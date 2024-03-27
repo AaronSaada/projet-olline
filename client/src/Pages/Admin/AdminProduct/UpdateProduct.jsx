@@ -10,7 +10,8 @@ function UpdateProduct() {
     new_price:0,
     category:"men",
     image:"",
-    description:""
+    description:"",
+    quantity: 0 ,
   })
 
   const navigate = useNavigate()
@@ -77,7 +78,7 @@ function UpdateProduct() {
           </div>
         </div>
         <div className="addproduct-item-field">
-        <label htmlFor='description'>Description du produit</label>
+          <label htmlFor='description'>Description du produit</label>
           <textarea 
             name='description' 
             id='description' 

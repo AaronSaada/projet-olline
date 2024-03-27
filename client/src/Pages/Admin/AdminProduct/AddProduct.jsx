@@ -9,7 +9,8 @@ function AddProduct() {
     old_price:0,
     new_price:0,
     category:"men",
-    description:""
+    description:"",
+    quantity:0,
   })
 
   const navigate = useNavigate()
@@ -21,7 +22,6 @@ function AddProduct() {
       ...productDetails, [e.target.name]:e.target.value
     })
   }
-  console.log(productDetails)
 
   const handleClick = async () => {
     try{
@@ -72,7 +72,7 @@ function AddProduct() {
         </div>
       </div>
       <div className="addproduct-item-field">
-      <label htmlFor='description'>Description du produit</label>
+        <label htmlFor='description'>Description du produit</label>
         <textarea 
           name='description' 
           id='description' 

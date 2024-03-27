@@ -75,7 +75,5 @@ export const deconnexion = (req, res) => {
     secure: true,
     sameSite: "none"
   }).status(200).json("Déconnexion réussie.")
-  
-  localStorage.removeItem("token")
 
 }

@@ -62,6 +62,10 @@
   gap: 4rem;
 }
 
+.menu-container{
+  display: none;
+}
+
 @media(max-width: 1400px){
   .navbar{
     font-size: 1rem;
@@ -85,8 +89,94 @@
 }
 
 @media(max-width: 600px){
-  .navbar{
-    font-size: 1rem;
+
+  .desktop-nav{
     display: none;
   }
+
+  .menu{
+    position: fixed;
+  }
+
+  .menu-container{
+    display: block;
+  }
+
+  .menu .burger-nav{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    font-size: 2rem;
+    font-weight: 700;
+    background-color: var(--Jaune-Orange);
+    color: white;
+  } 
+
+  .burger-menu{
+    position: fixed;
+    top: 2%;
+    right: 3%;
+    z-index: 101;
+  }
+
+  .burger-bar{
+    width: 2.5em;
+    height: 4px;
+    background: black;
+    margin: 10px auto;
+    z-index: 101;
+  }
+
+  .hidden{
+    right: -100%;
+    transition: ease-out 0.3s;
+    z-index: 100;
+  }
+
+  .visible{
+    right: 0;
+    transition: ease-out 0.3s; 
+    position: fixed;
+    width: 100vw;
+    z-index: 100;
+  } 
+
+  .logo-container li{
+    font-size: 5rem;
+  }
+
+  .burger-bar.clicked:first-child{
+    transform: rotate(45deg) ;
+    transition: ease-in-out 0.2s;
+  }
+
+  .burger-bar.clicked:nth-child(2){
+    display: none;
+    transition: ease-in-out 0.2s;
+  }
+
+  .burger-bar.clicked:last-child{
+    transform:rotate(-45deg);
+    transition: ease-in-out 0.2s;
+  }
+
+  .burger-bar.unclicked {
+    transform: rotate(0);
+    transition: ease-in-out 0.2s;
+  }
+
+  .burger-bar.clicked{
+    position: fixed;
+    top: 4%;
+    right: 3%;
+  }
+
+  .connexion-panier-container{
+    gap: 1rem;
+    flex-direction: column;
+  }
+
 }
